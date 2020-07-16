@@ -21,11 +21,9 @@ const Wrapper = styled.div`
 const Paper = styled.div`
   width: 85%;
   background: ${({ theme }) => theme.colors.white};
-  padding: 3rem;
   box-shadow: 0 10px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19) !important;
-  min-height: 65vh;
+  min-height: 85vh;
   @media (max-width: 500px) {
-    padding: 2rem;
     min-height: 95vh;
   }
 `;

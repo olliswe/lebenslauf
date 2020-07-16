@@ -10,6 +10,7 @@ import Layout from "./components/layout/Layout";
 import MessageHub from "./components/message-hub/MessageHub";
 import Test from "./components/Test";
 import history from "./helpers/history";
+import EditCV from "./components/views/EditCV";
 
 function App() {
   return (
@@ -18,7 +19,7 @@ function App() {
       <Router history={history}>
         <MessageHub />
         <Layout>
-          <Route path="" component={Test} />
+          <Route path="" component={EditCV} />
         </Layout>
       </Router>
     </ThemeProvider>
