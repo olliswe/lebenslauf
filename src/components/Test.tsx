@@ -1,16 +1,7 @@
-import React, {useEffect} from 'react';
-import useToastMessages from "../hooks/useToastMessages";
+import React from "react";
 
 const Test = () => {
-
-    const {info} = useToastMessages()
-
-
-    return (
-        <div>
-            Hello world!
-        </div>
-    );
+  return <div>Hello world!</div>;
 };
 
 export default Test;

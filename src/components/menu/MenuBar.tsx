@@ -1,24 +1,25 @@
-import styled from 'styled-components';
-import React, { useEffect, useState, useCallback } from 'react';
-import NavHeaderDesktop from './NavbarDesktop';
-import MenuBarMobile from './NavbarMobile';
-import Logo from '../../assets/img/logo.png'
-
+import styled from "styled-components";
+import React, { useEffect, useState, useCallback } from "react";
+import NavHeaderDesktop from "./NavbarDesktop";
+import MenuBarMobile from "./NavbarMobile";
+import Logo from "../../assets/img/logo.png";
 
 const defaults = {
-    navHeight: '5rem',
-    smallNavHeight: '3.75rem',
-    screenChange: 1096,
+  navHeight: "4.5rem",
+  smallNavHeight: "3.75rem",
+  screenChange: 1096,
 };
 
-
 const NavBarStyled = styled.nav`
-  height: ${defaults.smallNavHeight};
+  height: ${defaults.navHeight};
   width: 100%;
-  background-image: ${({ theme }) => `linear-gradient(to bottom,${theme.colors.secondary},${theme.colors.secondaryLight})`};
-
-  @media (min-width: ${({ theme }) => theme.mediaSizes.phone}) {
+  background-image: ${({ theme }) =>
+    `linear-gradient(to bottom,${theme.colors.secondary},${theme.colors.secondaryLight})`};
+  position: @media (min-width: ${({ theme }) => theme.mediaSizes.phone}) {
     height: ${defaults.navHeight};
+  }
+  @media (max-width: 500px) {
+    position: fixed;
   }
 `;
 
@@ -43,8 +44,8 @@ const NavBarContent = styled.div`
 `;
 
 const Img = styled.img`
-    height:2rem;
-`
+  height: 2rem;
+`;
 
 const IconLinkWrap = styled.div`
   position: absolute;
@@ -67,39 +68,35 @@ const IconLinkWrap = styled.div`
   }
 `;
 
-const MenuBar = ()  => {
-    const [width, setWidth] = useState<number>(window.innerWidth);
+const MenuBar = () => {
+  const [width, setWidth] = useState<number>(window.innerWidth);
 
-    const handleWindowSizeChange = useCallback(() => {
-        setWidth(_ => window.innerWidth);
-    }, []);
-    useEffect(() => {
-        window.addEventListener('resize', handleWindowSizeChange, {
-            passive: true,
-        });
-        return () => {
-            window.removeEventListener('resize', handleWindowSizeChange);
-        };
-    }, [handleWindowSizeChange]);
+  const handleWindowSizeChange = useCallback(() => {
+    setWidth((_) => window.innerWidth);
+  }, []);
+  useEffect(() => {
+    window.addEventListener("resize", handleWindowSizeChange, {
+      passive: true,
+    });
+    return () => {
+      window.removeEventListener("resize", handleWindowSizeChange);
+    };
+  }, [handleWindowSizeChange]);
 
+  const isMobile = width < defaults.screenChange;
+  const smallNavBar = width < 768;
 
-    const isMobile = width < defaults.screenChange;
-    const smallNavBar = width < 768;
-
-    return (
-        <NavBarStyled>
-            <NavBarContent>
-                <IconLinkWrap><Img src={Logo}/></IconLinkWrap>
-                {isMobile && (
-                    <MenuBarMobile
-                        smallNavBar={smallNavBar}/>
-                )}
-                {!isMobile && (
-                    <NavHeaderDesktop/>
-                )}
-            </NavBarContent>
-        </NavBarStyled>
-    );
+  return (
+    <NavBarStyled>
+      <NavBarContent>
+        <IconLinkWrap>
+          <Img src={Logo} />
+        </IconLinkWrap>
+        {isMobile && <MenuBarMobile smallNavBar={smallNavBar} />}
+        {!isMobile && <NavHeaderDesktop />}
+      </NavBarContent>
+    </NavBarStyled>
+  );
 };
 
 export default MenuBar;
