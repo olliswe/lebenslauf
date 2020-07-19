@@ -1,3 +1,4 @@
+import "antd/dist/antd.css";
 import "./App.less";
 
 import { Router, Route } from "react-router-dom";
@@ -8,7 +9,6 @@ import { theme } from "./configs/theme";
 import GlobalStyle from "./components/style/GlobalStyle";
 import Layout from "./components/layout/Layout";
 import MessageHub from "./components/message-hub/MessageHub";
-import Test from "./components/Test";
 import history from "./helpers/history";
 import EditCV from "./components/views/EditCV";
 

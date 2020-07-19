@@ -1,12 +1,12 @@
 import React from "react";
 import Title from "../../elements/Title";
 
-const EditCVSideProj = () => {
+const EditCVBasic = () => {
   return (
     <div>
-      <Title level={2}>Personal Projects</Title>
+      <Title level={2}>Basic Information</Title>
     </div>
   );
 };
 
-export default EditCVSideProj;
+export default EditCVBasic;

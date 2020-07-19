@@ -8,6 +8,7 @@ const colors = {
 
   primary: "#F76C6C",
   primaryLight: "#F99797",
+  primaryLightFaded: "rgba(249, 151, 151, 0.6)",
 
   secondary: "#23305E",
   secondaryLight: "#A8D0E6",
@@ -20,7 +21,6 @@ const colors = {
   errorBc: "#ff5050",
 
   lead: "#454545",
-
   greyVarF0: "#F0F0F0",
   greyVarF1: "#f1f1f1",
   greyVarF2: "#F2F2F2",

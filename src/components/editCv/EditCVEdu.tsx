@@ -1,7 +1,12 @@
 import React from "react";
+import Title from "../../elements/Title";
 
-const MyComponent = () => {
-  return <div></div>;
+const EditCVEdu = () => {
+  return (
+    <div>
+      <Title level={2}>Education</Title>
+    </div>
+  );
 };
 
-export default MyComponent;
+export default EditCVEdu;

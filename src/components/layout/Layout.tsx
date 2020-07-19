@@ -3,6 +3,7 @@ import styled from "styled-components";
 
 import MainContainer from "./MainContainer";
 import MenuBar from "../menu/MenuBar";
+import Footer from "../footer/Footer";
 
 interface ILayout {
   children: React.ReactChild | React.ReactChild[];
@@ -37,6 +38,7 @@ const Layout: React.FC<ILayout> = ({ children }) => {
           <Paper>{children}</Paper>
         </MainContainer>
       </Wrapper>
+      <Footer />
     </>
   );
 };
