@@ -1,12 +1,50 @@
 import React from "react";
 import Title from "../../elements/Title";
-import { FormWrapper } from "./Shared";
+import { FormWrapper, StyledRow } from "./Shared";
+import FormTextInput from "../../elements/FormTextInput";
+
+/***
+ FIELDS:
+
+ name:string;
+ position?:string;
+ bio?:string;
+ location?:string;
+ email?:string;
+ phone?:string;
+ homepage_url?:string;
+ linkedin_url?:string;
+
+
+ * ****/
 
 const EditCVBasic = () => {
   return (
     <div>
       <Title level={2}>Basic Information</Title>
-      <FormWrapper>Form goes here...</FormWrapper>
+      <FormWrapper>
+        <StyledRow>
+          <FormTextInput label={"Name"} />
+        </StyledRow>
+        <StyledRow>
+          <FormTextInput label={"Email"} />
+        </StyledRow>
+        <StyledRow>
+          <FormTextInput label={"Phone"} />
+        </StyledRow>
+        <StyledRow>
+          <FormTextInput label={"Location"} />
+        </StyledRow>
+        <StyledRow>
+          <FormTextInput label={"Current Position"} />
+        </StyledRow>
+        <StyledRow>
+          <FormTextInput label={"Homepage URL"} />
+        </StyledRow>
+        <StyledRow>
+          <FormTextInput label={"LinkedIn URL"} />
+        </StyledRow>
+      </FormWrapper>
     </div>
   );
 };

@@ -34,8 +34,8 @@ const TitleWrapper = styled.div`
 
 const StyledButton = styled(CtaButton)`
   position: absolute;
-  bottom: 0.9rem;
-  right: 4rem;
+  right: 5rem;
+  bottom: 0rem;
   font-size: 1.5rem;
 `;
 

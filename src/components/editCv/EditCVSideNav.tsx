@@ -1,6 +1,6 @@
 import React from "react";
-import SideNavContainer from "../../elements/SideNavContainer";
-import SideNavElement from "../../elements/SideNavElement";
+import SideNavContainer from "../sideNav/SideNavContainer";
+import SideNavElement from "../sideNav/SideNavElement";
 
 interface IEditCVSideNav {
   activeKey: number;
