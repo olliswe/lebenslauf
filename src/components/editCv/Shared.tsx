@@ -5,6 +5,7 @@ import { Scrollbars } from "react-custom-scrollbars";
 
 export const FormWrapper = ({ children }) => (
   <Scrollbars
+    renderTrackHorizontal={() => <div />}
     style={{
       height: "31rem",
       padding: "1rem 0 2rem 0",

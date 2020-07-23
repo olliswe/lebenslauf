@@ -2,6 +2,7 @@ import React from "react";
 import Title from "../../elements/Title";
 import { FormWrapper, StyledRow } from "./Shared";
 import FormTextInput from "../../elements/FormTextInput";
+import FormTextArea from "../../elements/FormTextArea";
 
 /***
  FIELDS:
@@ -37,6 +38,9 @@ const EditCVBasic = () => {
         </StyledRow>
         <StyledRow>
           <FormTextInput label={"Current Position"} />
+        </StyledRow>
+        <StyledRow>
+          <FormTextArea label={"Bio"} rows={10} />
         </StyledRow>
         <StyledRow>
           <FormTextInput label={"Homepage URL"} />
