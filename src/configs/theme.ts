@@ -9,6 +9,7 @@ const colors = {
   primary: "#F76C6C",
   primaryLight: "#F99797",
   primaryLightFaded: "rgba(249, 151, 151, 0.6)",
+  primaryLightVeryFaded: "rgba(249, 151, 151, 0.4)",
 
   secondary: "#23305E",
   secondaryLight: "#A8D0E6",
