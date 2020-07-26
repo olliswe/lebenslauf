@@ -3,6 +3,13 @@ import styled from "styled-components";
 import { Row } from "antd";
 import { Scrollbars } from "react-custom-scrollbars";
 
+const Wrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+`;
+
 export const FormWrapper = ({ children }) => (
   <Scrollbars
     renderTrackHorizontal={() => <div />}
@@ -13,11 +20,11 @@ export const FormWrapper = ({ children }) => (
       marginBottom: "2rem",
     }}
   >
-    {children}
+    <Wrapper>{children}</Wrapper>
   </Scrollbars>
 );
 
-export const StyledRow = styled(Row)`
-  margin-bottom: 2rem;
+export const StyledRow = styled(Row)<{ mb?: string }>`
+  margin-bottom: ${({ mb }) => mb || `1rem`};
   max-width: 50rem;
 `;

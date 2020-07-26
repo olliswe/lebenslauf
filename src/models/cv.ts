@@ -32,10 +32,10 @@ export interface ICV {
   location?: string;
   email?: string;
   phone?: string;
-  homepage_url?: string;
-  linkedin_url?: string;
-  education_entries: IEducationEntry[];
-  experience_entries: IExperienceEntry[];
-  personal_project_entries: IPersonalProjectEntry[];
+  homepageUrl?: string;
+  linkedinUrl?: string;
+  educationEntries: IEducationEntry[];
+  experienceEntries: IExperienceEntry[];
+  personalProjectEntries: IPersonalProjectEntry[];
   skills?: string[];
 }

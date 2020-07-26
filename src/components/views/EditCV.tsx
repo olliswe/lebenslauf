@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import EditCVSideNav from "../editCv/EditCVSideNav";
 import styled from "styled-components";
 import Title from "../../elements/Title";
@@ -8,6 +8,7 @@ import EditCVWorkExp from "../editCv/EditCVWorkExp";
 import EditCVSideProj from "../editCv/EditCVSideProj";
 import EditCVSkills from "../editCv/EditCVSkills";
 import CtaButton from "../../elements/CtaButton";
+import { Route, Switch, Redirect } from "react-router-dom";
 
 const Wrapper = styled.div`
   display: flex;
@@ -39,25 +40,34 @@ const StyledButton = styled(CtaButton)`
   font-size: 1.5rem;
 `;
 
+export const tabs = [
+  { Component: EditCVBasic, path: "/cv/basics", label: "Basics" },
+  { Component: EditCVEdu, path: "/cv/education", label: "Education" },
+  { Component: EditCVWorkExp, path: "/cv/work", label: "Experience" },
+  {
+    Component: EditCVSideProj,
+    path: "/cv/side-projects",
+    label: "Personal Project",
+  },
+  { Component: EditCVSkills, path: "/cv/skills", label: "Skills" },
+];
+
 const EditCV = () => {
-  const [currentTab, setCurrentTab] = useState<number>(0);
-
-  const tabs = [
-    <EditCVBasic />,
-    <EditCVEdu />,
-    <EditCVWorkExp />,
-    <EditCVSideProj />,
-    <EditCVSkills />,
-  ];
-
   return (
     <Wrapper>
-      <EditCVSideNav activeKey={currentTab} setActiveKey={setCurrentTab} />
+      <EditCVSideNav />
       <Container>
         <TitleWrapper>
           <Title level={1}>EDIT CV</Title>
         </TitleWrapper>
-        <Content>{tabs[currentTab]}</Content>
+        <Content>
+          <Switch>
+            {tabs.map(({ Component, path }) => (
+              <Route path={path} exact key={path} component={Component} />
+            ))}
+            <Redirect from={"/cv"} to={"/cv/basics"} />
+          </Switch>
+        </Content>
       </Container>
       <StyledButton>Save & Finish</StyledButton>
     </Wrapper>

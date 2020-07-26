@@ -1,34 +1,29 @@
-import React from "react";
+import React, { useCallback } from "react";
 import SideNavContainer from "../sideNav/SideNavContainer";
 import SideNavElement from "../sideNav/SideNavElement";
+import { tabs } from "../views/EditCV";
+import { useLocation, useHistory } from "react-router-dom";
 
-interface IEditCVSideNav {
-  activeKey: number;
-  setActiveKey: (key: number) => void;
-}
+const EditCVSideNav = () => {
+  const { pathname } = useLocation();
+  const history = useHistory();
 
-const TAB_DATA = new Map([
-  [0, { label: "Basics" }],
-  [1, { label: "Education" }],
-  [2, { label: "Experience" }],
-  [3, { label: "Personal Projects" }],
-  [4, { label: "Skills" }],
-]);
-
-const EditCVSideNav = ({ activeKey, setActiveKey }: IEditCVSideNav) => {
-  const onClickHandler = (key) => {
-    setActiveKey(key);
-  };
+  const onClickHandler = useCallback(
+    (tabKey) => {
+      history.push(tabKey);
+    },
+    [history]
+  );
 
   return (
     <SideNavContainer>
-      {Array.from(TAB_DATA.keys()).map((key: any) => (
+      {tabs.map(({ label, path }: any) => (
         <SideNavElement
-          active={activeKey === key}
-          key={key}
-          tabKey={key}
+          active={path === pathname}
+          key={path}
+          tabKey={path}
           onClickHandler={onClickHandler}
-          label={TAB_DATA.get(key).label}
+          label={label}
         />
       ))}
     </SideNavContainer>
