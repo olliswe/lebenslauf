@@ -1,5 +1,5 @@
 import React, { useCallback, useMemo } from "react";
-import Title from "../../elements/Title";
+import H2 from "../../elements/H2";
 import { FormWrapper } from "./Shared";
 import Button from "../../elements/Button";
 import styled from "styled-components";
@@ -43,7 +43,7 @@ const EditCVEdu = () => {
 
   return (
     <div>
-      <Title level={2}>Education</Title>
+      <H2>Education</H2>
       <FormWrapper>
         {educationEntries.map((entry, index) => (
           <EducationEntry entry={entry} key={index} index={index} />

@@ -1,10 +1,10 @@
 import React from "react";
-import Title from "../../elements/Title";
+import H2 from "../../elements/H2";
 
 const EditCVSkills = () => {
   return (
     <div>
-      <Title level={2}>Skills</Title>
+      <H2>Skills</H2>
     </div>
   );
 };

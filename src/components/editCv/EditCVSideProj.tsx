@@ -1,10 +1,10 @@
 import React from "react";
-import Title from "../../elements/Title";
+import H2 from "../../elements/H2";
 
 const EditCVSideProj = () => {
   return (
     <div>
-      <Title level={2}>Personal Projects</Title>
+      <H2>Personal Projects</H2>
     </div>
   );
 };

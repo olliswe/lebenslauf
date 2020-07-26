@@ -1,5 +1,5 @@
 import React from "react";
-import Title from "../../elements/Title";
+import H2 from "../../elements/H2";
 import { FormWrapper, StyledRow } from "./Shared";
 import FormTextInput from "../../elements/FormTextInput";
 import FormTextArea from "../../elements/FormTextArea";
@@ -22,7 +22,7 @@ import FormTextArea from "../../elements/FormTextArea";
 const EditCVBasic = () => {
   return (
     <div>
-      <Title level={2}>Basic Information</Title>
+      <H2>Basic Information</H2>
       <FormWrapper>
         <StyledRow>
           <FormTextInput label={"Name"} />

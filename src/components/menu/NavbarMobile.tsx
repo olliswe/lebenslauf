@@ -2,7 +2,7 @@ import styled from "styled-components";
 import React, { useRef, useState } from "react";
 import { Links } from "./Common";
 import useLockBodyScroll from "../../hooks/useLockBodyScroll";
-import Title from "../../elements/Title";
+import H1 from "../../elements/H1";
 
 const MobileHeader = styled.div`
   position: relative;
@@ -155,10 +155,10 @@ const MenuBarMobile = ({ smallNavBar }) => {
         <Content ref={contentRef} className={burgerOpen ? "open" : ""}>
           <Wrapper>
             <LinkWrapper>
-              <Title level={1}>DASHBOARD</Title>
+              <H1>DASHBOARD</H1>
             </LinkWrapper>
             <LinkWrapper>
-              <Title level={1}>GENERATE CV</Title>
+              <H1>GENERATE CV</H1>
             </LinkWrapper>
           </Wrapper>
         </Content>

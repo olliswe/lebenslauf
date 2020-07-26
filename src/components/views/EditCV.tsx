@@ -1,7 +1,7 @@
 import React from "react";
 import EditCVSideNav from "../editCv/EditCVSideNav";
 import styled from "styled-components";
-import Title from "../../elements/Title";
+import H1 from "../../elements/H1";
 import EditCVBasic from "../editCv/EditCVBasic";
 import EditCVEdu from "../editCv/EditCVEdu";
 import EditCVWorkExp from "../editCv/EditCVWorkExp";
@@ -47,7 +47,7 @@ export const tabs = [
   {
     Component: EditCVSideProj,
     path: "/cv/side-projects",
-    label: "Personal Project",
+    label: "Personal Projects",
   },
   { Component: EditCVSkills, path: "/cv/skills", label: "Skills" },
 ];
@@ -58,7 +58,7 @@ const EditCV = () => {
       <EditCVSideNav />
       <Container>
         <TitleWrapper>
-          <Title level={1}>EDIT CV</Title>
+          <H1>EDIT CV</H1>
         </TitleWrapper>
         <Content>
           <Switch>

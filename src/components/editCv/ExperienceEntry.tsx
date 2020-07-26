@@ -1,5 +1,5 @@
 import React, { useCallback } from "react";
-import { IEducationEntry } from "../../models/cv";
+import { IExperienceEntry } from "../../models/cv";
 import { StyledRow } from "./Shared";
 import FormTextInput from "../../elements/FormTextInput";
 import { Col, Divider, Button as AntdButton } from "antd";
@@ -8,6 +8,17 @@ import FormTextArea from "../../elements/FormTextArea";
 import styled from "styled-components";
 import { CloseOutlined } from "@ant-design/icons";
 import { useCV } from "../../hooks/useCV";
+
+// export interface IExperienceEntry {
+//     role: string;
+//     company: string;
+//     start_month: string;
+//     start_year: string;
+//     end_month?: string;
+//     current: boolean;
+//     skills: string[];
+//     githubProjectUrl?: string;
+// }
 
 const ButtonWrapper = styled.div`
   height: 0;
@@ -30,17 +41,20 @@ const removeEntry = (array, key) => {
   return copy;
 };
 
-const EducationEntry = ({
+const ExperienceEntry = ({
   entry,
   index,
 }: {
-  entry: IEducationEntry;
+  entry: IExperienceEntry;
   index: number;
 }) => {
   const set = useCV((state) => state.set);
   const handleButtonClick = useCallback(() => {
     set((state) => {
-      state.cv.educationEntries = removeEntry(state.cv.educationEntries, index);
+      state.cv.experienceEntries = removeEntry(
+        state.cv.experienceEntries,
+        index
+      );
     });
   }, [set, index]);
 
@@ -50,17 +64,18 @@ const EducationEntry = ({
         <AntdButton
           //@ts-ignore
           type="danger"
-          shape="circle"
-          icon={<CloseOutlined />}
+          shape="round"
           size={"small"}
           onClick={handleButtonClick}
-        />
+        >
+          Remove
+        </AntdButton>
       </ButtonWrapper>
       <StyledRow>
-        <FormTextInput label={"Institution"} />
+        <FormTextInput label={"Role"} />
       </StyledRow>
       <StyledRow>
-        <FormTextInput label={"Degree Title"} />
+        <FormTextInput label={"Company"} />
       </StyledRow>
       <StyledRow gutter={24}>
         <Col span={12}>
@@ -73,9 +88,12 @@ const EducationEntry = ({
       <StyledRow>
         <FormTextArea label={"Description"} rows={3} />
       </StyledRow>
+      <StyledRow>
+        <FormTextInput label={"GitHub Project URL"} rows={3} />
+      </StyledRow>
       <Divider />
     </Wrapper>
   );
 };
 
-export default EducationEntry;
+export default ExperienceEntry;
