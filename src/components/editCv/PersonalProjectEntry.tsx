@@ -1,14 +1,23 @@
 import React, { useCallback } from "react";
-import { IEducationEntry } from "../../models/cv";
+import { IPersonalProjectEntry } from "../../models/cv";
 import { StyledRow } from "./Shared";
 import FormTextInput from "../../elements/FormTextInput";
 import { Col, Divider, Button as AntdButton } from "antd";
 import FormDatePicker from "../../elements/FormDatePicker";
 import FormTextArea from "../../elements/FormTextArea";
 import styled from "styled-components";
-import { CloseOutlined } from "@ant-design/icons";
 import { useCV } from "../../hooks/useCV";
+import SkillsSelector from "../../elements/SkillsSelector";
 
+//
+// export interface IPersonalProjectEntry {
+//     name: string;
+//     description?: string;
+//     skills: string[];
+//     githubProjectUrl?: string;
+// }
+
+// TODO: MOVE ALL THESE TO SHARED
 const ButtonWrapper = styled.div`
   height: 0;
   align-self: flex-end;
@@ -24,25 +33,31 @@ const Wrapper = styled.div`
   height: 100%;
 `;
 
+// TODO: MOVE TO HELPER
 const removeEntry = (array, key) => {
   const copy = array;
   copy.splice(key, 1);
   return copy;
 };
 
-const EducationEntry = ({
+const PersonalProjectEntry = ({
   entry,
   index,
 }: {
-  entry: IEducationEntry;
+  entry: IPersonalProjectEntry;
   index: number;
 }) => {
   const set = useCV((state) => state.set);
   const handleButtonClick = useCallback(() => {
     set((state) => {
-      state.cv.educationEntries = removeEntry(state.cv.educationEntries, index);
+      state.cv.personalProjectEntries = removeEntry(
+        state.cv.personalProjectEntries,
+        index
+      );
     });
   }, [set, index]);
+
+  const setSkills = useCallback((skills) => {}, []);
 
   return (
     <Wrapper>
@@ -58,25 +73,20 @@ const EducationEntry = ({
         </AntdButton>
       </ButtonWrapper>
       <StyledRow>
-        <FormTextInput label={"Institution"} />
-      </StyledRow>
-      <StyledRow>
-        <FormTextInput label={"Degree Title"} />
-      </StyledRow>
-      <StyledRow gutter={24}>
-        <Col span={12}>
-          <FormDatePicker label={"Start Date"} width={"80%"} />
-        </Col>
-        <Col span={12}>
-          <FormDatePicker label={"End Date"} width={"80%"} />
-        </Col>
+        <FormTextInput label={"Name"} />
       </StyledRow>
       <StyledRow>
         <FormTextArea label={"Description"} rows={3} />
+      </StyledRow>
+      <StyledRow>
+        <FormTextInput label={"GitHub Project URL"} />
+      </StyledRow>
+      <StyledRow>
+        <SkillsSelector skills={entry.skills} />
       </StyledRow>
       <Divider />
     </Wrapper>
   );
 };
 
-export default EducationEntry;
+export default PersonalProjectEntry;

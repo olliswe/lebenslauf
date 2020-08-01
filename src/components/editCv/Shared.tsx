@@ -17,7 +17,7 @@ export const FormWrapper = ({ children }) => (
       height: "31rem",
       padding: "1rem 0 2rem 0",
       boxSizing: "border-box",
-      marginBottom: "2rem",
+      marginBottom: "1rem",
     }}
   >
     <Wrapper>{children}</Wrapper>
@@ -27,4 +27,5 @@ export const FormWrapper = ({ children }) => (
 export const StyledRow = styled(Row)<{ mb?: string }>`
   margin-bottom: ${({ mb }) => mb || `1rem`};
   max-width: 50rem;
+  width: 100%;
 `;
