@@ -2,12 +2,12 @@ import React, { useCallback } from "react";
 import { IExperienceEntry } from "../../models/cv";
 import { EntryWrapper, RemoveButtonWrapper, StyledRow } from "./Shared";
 import FormTextInput from "../../elements/FormTextInput";
-import { Col, Divider, Button as AntdButton } from "antd";
+import { Col, Button as AntdButton } from "antd";
 import FormDatePicker from "../../elements/FormDatePicker";
 import FormTextArea from "../../elements/FormTextArea";
-import { useCV } from "../../hooks/useCV";
-import removeEntry from "../../helpers/removeEntry";
+import useExperienceEntries from "../../hooks/useExperienceEntries";
 import SkillsSelector from "../../elements/SkillsSelector";
+import { Divider } from "@material-ui/core";
 
 const ExperienceEntry = ({
   entry,
@@ -16,25 +16,9 @@ const ExperienceEntry = ({
   entry: IExperienceEntry;
   index: number;
 }) => {
-  const set = useCV((state) => state.set);
+  const { removeEntry, setEntry } = useExperienceEntries(index);
   const techStack = entry.techStack;
-  const handleButtonClick = useCallback(() => {
-    set((state) => {
-      state.cv.experienceEntries = removeEntry(
-        state.cv.experienceEntries,
-        index
-      );
-    });
-  }, [set, index]);
-
-  const setTechStack = useCallback(
-    (input) => {
-      set((state) => {
-        state.cv.skills = input;
-      });
-    },
-    [set]
-  );
+  const handleButtonClick = useCallback(() => removeEntry(), [removeEntry]);
 
   return (
     <EntryWrapper>
@@ -69,7 +53,15 @@ const ExperienceEntry = ({
       <StyledRow>
         <FormTextInput label={"GitHub Project URL"} rows={3} />
       </StyledRow>
-
+      <StyledRow mb={"0"}>
+        <SkillsSelector
+          skills={["React"]}
+          setSkills={() => {}}
+          label={"Tech Stack"}
+          chipFontSize={"0.8rem"}
+          chipSize={"small"}
+        />
+      </StyledRow>
       <Divider />
     </EntryWrapper>
   );

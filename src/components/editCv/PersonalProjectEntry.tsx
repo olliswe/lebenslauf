@@ -5,7 +5,7 @@ import FormTextInput from "../../elements/FormTextInput";
 import { Divider, Button as AntdButton } from "antd";
 import FormTextArea from "../../elements/FormTextArea";
 import { useCV } from "../../hooks/useCV";
-import removeEntry from "../../helpers/removeEntry";
+import removeEntry from "../../helpers/removeEntryHelper";
 
 const PersonalProjectEntry = ({
   entry,

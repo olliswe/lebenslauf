@@ -1,41 +1,20 @@
 import React, { useCallback, useMemo } from "react";
 
 import { ButtonWrapper, FormWrapper } from "./Shared";
-import { useCV } from "../../hooks/useCV";
 import Button from "../../elements/Button";
 import ExperienceEntry from "./ExperienceEntry";
 import H2 from "../../elements/H2";
-
-const INITIAL_STATE = {
-  role: "",
-  company: "",
-  start_month: "",
-  start_year: "",
-  end_month: "",
-  current: false,
-  skills: [],
-  githubProjectUrl: "",
-};
+import useExperienceEntries from "../../hooks/useExperienceEntries";
 
 const EditCVWorkExp = () => {
-  const experienceEntries = useCV((state) => state.cv.experienceEntries);
-  const set = useCV((state) => state.set);
-
-  const hasEntries = useMemo(() => experienceEntries.length > 0, [
+  const {
     experienceEntries,
-  ]);
+    addEntry,
+    setEntry,
+    hasEntries,
+  } = useExperienceEntries();
 
-  const handleClick = useCallback(
-    (e) => {
-      set((state) => {
-        state.cv.experienceEntries = [
-          ...state.cv.experienceEntries,
-          INITIAL_STATE,
-        ];
-      });
-    },
-    [set]
-  );
+  const handleClick = useCallback(() => addEntry(), [addEntry]);
 
   return (
     <div>

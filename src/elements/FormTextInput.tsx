@@ -1,6 +1,7 @@
 import React from "react";
 import { Input } from "antd";
 import Label from "./Label";
+import styled from "styled-components";
 
 interface IFormTextInput {
   label?: string;
@@ -16,6 +17,7 @@ const FormTextInput = ({
   return (
     <Label>
       {label}
+      {label && <br />}
       <Input {...rest} style={{ width }} />
     </Label>
   );

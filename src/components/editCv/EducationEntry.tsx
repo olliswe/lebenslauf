@@ -6,7 +6,7 @@ import { Col, Divider, Button as AntdButton } from "antd";
 import FormDatePicker from "../../elements/FormDatePicker";
 import FormTextArea from "../../elements/FormTextArea";
 import { useCV } from "../../hooks/useCV";
-import removeEntry from "../../helpers/removeEntry";
+import removeEntry from "../../helpers/removeEntryHelper";
 
 const EducationEntry = ({
   entry,
