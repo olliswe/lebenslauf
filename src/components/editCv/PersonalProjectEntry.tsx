@@ -1,44 +1,11 @@
 import React, { useCallback } from "react";
 import { IPersonalProjectEntry } from "../../models/cv";
-import { StyledRow } from "./Shared";
+import { EntryWrapper, RemoveButtonWrapper, StyledRow } from "./Shared";
 import FormTextInput from "../../elements/FormTextInput";
-import { Col, Divider, Button as AntdButton } from "antd";
-import FormDatePicker from "../../elements/FormDatePicker";
+import { Divider, Button as AntdButton } from "antd";
 import FormTextArea from "../../elements/FormTextArea";
-import styled from "styled-components";
 import { useCV } from "../../hooks/useCV";
-import SkillsSelector from "../../elements/SkillsSelector";
-
-//
-// export interface IPersonalProjectEntry {
-//     name: string;
-//     description?: string;
-//     skills: string[];
-//     githubProjectUrl?: string;
-// }
-
-// TODO: MOVE ALL THESE TO SHARED
-const ButtonWrapper = styled.div`
-  height: 0;
-  align-self: flex-end;
-  margin: 1rem 1rem 0 0;
-`;
-
-const Wrapper = styled.div`
-  opacity: 1;
-  transition: opacity 1s ease-in;
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  height: 100%;
-`;
-
-// TODO: MOVE TO HELPER
-const removeEntry = (array, key) => {
-  const copy = array;
-  copy.splice(key, 1);
-  return copy;
-};
+import removeEntry from "../../helpers/removeEntry";
 
 const PersonalProjectEntry = ({
   entry,
@@ -57,11 +24,9 @@ const PersonalProjectEntry = ({
     });
   }, [set, index]);
 
-  const setSkills = useCallback((skills) => {}, []);
-
   return (
-    <Wrapper>
-      <ButtonWrapper>
+    <EntryWrapper>
+      <RemoveButtonWrapper>
         <AntdButton
           //@ts-ignore
           type="danger"
@@ -71,7 +36,7 @@ const PersonalProjectEntry = ({
         >
           Remove
         </AntdButton>
-      </ButtonWrapper>
+      </RemoveButtonWrapper>
       <StyledRow>
         <FormTextInput label={"Name"} />
       </StyledRow>
@@ -81,11 +46,8 @@ const PersonalProjectEntry = ({
       <StyledRow>
         <FormTextInput label={"GitHub Project URL"} />
       </StyledRow>
-      <StyledRow>
-        <SkillsSelector skills={entry.skills} />
-      </StyledRow>
       <Divider />
-    </Wrapper>
+    </EntryWrapper>
   );
 };
 

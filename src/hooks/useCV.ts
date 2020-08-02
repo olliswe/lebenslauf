@@ -1,9 +1,7 @@
 import create from "zustand";
-import { ICV } from "../models/cv";
 import produce from "immer";
-import axios from "axios";
-import { API_URL } from "../configs/app";
-import useImperativeRequestWrapper from "./useImperativeRequestWrapper";
+
+import { ICV } from "../models/cv";
 
 type IUseCV = {
   cv: ICV;
@@ -38,7 +36,7 @@ const [useCV] = create<IUseCV>((set) => ({
 }));
 
 const useCVRemotes = () => {
-  const [, makeRequest] = useImperativeRequestWrapper();
+  // const [, makeRequest] = useImperativeRequestWrapper();
   const set = useCV((state) => state.set);
 
   //TODO: update methods
@@ -46,7 +44,7 @@ const useCVRemotes = () => {
     set((state) => {
       state.loading = true;
     });
-    const { data, error } = await makeRequest({});
+    // const { data, error } = await makeRequest({});
   };
 
   const putCV = async () => {};

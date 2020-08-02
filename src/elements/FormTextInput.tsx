@@ -7,11 +7,16 @@ interface IFormTextInput {
   error?: string;
 }
 
-const FormTextInput = ({ label, error, ...rest }: IFormTextInput & any) => {
+const FormTextInput = ({
+  label,
+  error,
+  width,
+  ...rest
+}: IFormTextInput & any) => {
   return (
     <Label>
       {label}
-      <Input {...rest} />
+      <Input {...rest} style={{ width }} />
     </Label>
   );
 };

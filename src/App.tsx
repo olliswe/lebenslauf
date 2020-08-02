@@ -1,9 +1,7 @@
-import "antd/dist/antd.css";
-import "./App.less";
-
 import { BrowserRouter, Route, Switch, Redirect } from "react-router-dom";
 import { ThemeProvider } from "styled-components";
 import React from "react";
+import "./assets/antd-overwrites.css";
 
 import { theme } from "./configs/theme";
 import GlobalStyle from "./components/style/GlobalStyle";

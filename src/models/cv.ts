@@ -14,14 +14,14 @@ export interface IExperienceEntry {
   start_year: string;
   end_month?: string;
   current: boolean;
-  skills: string[];
+  techStack?: string[];
   githubProjectUrl?: string;
 }
 
 export interface IPersonalProjectEntry {
   name: string;
   description?: string;
-  skills: string[];
+  techStack?: string[];
   githubProjectUrl?: string;
 }
 

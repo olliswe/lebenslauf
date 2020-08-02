@@ -1,17 +1,10 @@
 import React, { useCallback, useMemo } from "react";
-import H2 from "../../elements/H2";
-import { FormWrapper } from "./Shared";
-import Button from "../../elements/Button";
-import styled from "styled-components";
-import { useCV } from "../../hooks/useCV";
-import PersonalProjectEntry from "./PersonalProjectEntry";
 
-// TODO: MOVE TO SHARED
-const ButtonWrapper = styled.div<{ centered: boolean }>`
-  align-self: center;
-  ${({ centered }) => (centered ? `margin-top: 6rem;` : `margin-top:1rem`)};
-  margin-bottom: 2rem;
-`;
+import { ButtonWrapper, FormWrapper } from "./Shared";
+import { useCV } from "../../hooks/useCV";
+import Button from "../../elements/Button";
+import H2 from "../../elements/H2";
+import PersonalProjectEntry from "./PersonalProjectEntry";
 
 //
 // export interface IPersonalProjectEntry {

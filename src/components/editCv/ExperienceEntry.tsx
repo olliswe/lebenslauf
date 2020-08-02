@@ -1,45 +1,13 @@
 import React, { useCallback } from "react";
 import { IExperienceEntry } from "../../models/cv";
-import { StyledRow } from "./Shared";
+import { EntryWrapper, RemoveButtonWrapper, StyledRow } from "./Shared";
 import FormTextInput from "../../elements/FormTextInput";
 import { Col, Divider, Button as AntdButton } from "antd";
 import FormDatePicker from "../../elements/FormDatePicker";
 import FormTextArea from "../../elements/FormTextArea";
-import styled from "styled-components";
-import { CloseOutlined } from "@ant-design/icons";
 import { useCV } from "../../hooks/useCV";
-
-// export interface IExperienceEntry {
-//     role: string;
-//     company: string;
-//     start_month: string;
-//     start_year: string;
-//     end_month?: string;
-//     current: boolean;
-//     skills: string[];
-//     githubProjectUrl?: string;
-// }
-
-const ButtonWrapper = styled.div`
-  height: 0;
-  align-self: flex-end;
-  margin: 1rem 1rem 0 0;
-`;
-
-const Wrapper = styled.div`
-  opacity: 1;
-  transition: opacity 1s ease-in;
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  height: 100%;
-`;
-
-const removeEntry = (array, key) => {
-  const copy = array;
-  copy.splice(key, 1);
-  return copy;
-};
+import removeEntry from "../../helpers/removeEntry";
+import SkillsSelector from "../../elements/SkillsSelector";
 
 const ExperienceEntry = ({
   entry,
@@ -49,6 +17,7 @@ const ExperienceEntry = ({
   index: number;
 }) => {
   const set = useCV((state) => state.set);
+  const techStack = entry.techStack;
   const handleButtonClick = useCallback(() => {
     set((state) => {
       state.cv.experienceEntries = removeEntry(
@@ -58,9 +27,18 @@ const ExperienceEntry = ({
     });
   }, [set, index]);
 
+  const setTechStack = useCallback(
+    (input) => {
+      set((state) => {
+        state.cv.skills = input;
+      });
+    },
+    [set]
+  );
+
   return (
-    <Wrapper>
-      <ButtonWrapper>
+    <EntryWrapper>
+      <RemoveButtonWrapper>
         <AntdButton
           //@ts-ignore
           type="danger"
@@ -70,7 +48,7 @@ const ExperienceEntry = ({
         >
           Remove
         </AntdButton>
-      </ButtonWrapper>
+      </RemoveButtonWrapper>
       <StyledRow>
         <FormTextInput label={"Role"} />
       </StyledRow>
@@ -91,8 +69,9 @@ const ExperienceEntry = ({
       <StyledRow>
         <FormTextInput label={"GitHub Project URL"} rows={3} />
       </StyledRow>
+
       <Divider />
-    </Wrapper>
+    </EntryWrapper>
   );
 };
 
