@@ -35,6 +35,10 @@ const ChipsWrapper = styled.div<any>`
 const ChipWrapper = styled.div<any>`
   margin: ${({ size }) =>
     size === "small" ? `0.5rem 0 0.5rem 0` : `1rem 0 1rem 0`};
+  & > div {
+    margin-right:1rem;
+   }
+  
 `;
 
 const SkillsSelector = ({

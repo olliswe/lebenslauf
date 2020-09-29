@@ -15,11 +15,14 @@
     "@types/react-router-dom": "^5.1.5",
     "@types/styled-components": "^5.1.0",
     "antd": "^4.4.0",
-    "axios": "^0.19.2",
+    "axios": "^0.20.0",
     "history": "^5.0.0",
     "immer": "^7.0.5",
+    "lodash": "^4.17.20",
     "normalize.css": "^8.0.1",
+    "query-string": "^6.13.1",
     "react": "^16.13.1",
+    "react-animated-ellipsis": "^1.0.0",
     "react-custom-scrollbars": "^4.2.1",
     "react-dom": "^16.13.1",
     "react-router-dom": "^5.2.0",
@@ -28,6 +31,7 @@
     "react-social-icons": "^4.1.0",
     "styled-components": "^5.1.1",
     "typescript": "~3.7.2",
+    "use-query-params": "^1.1.6",
     "zustand": "^2.2.3"
   },
   "scripts": {

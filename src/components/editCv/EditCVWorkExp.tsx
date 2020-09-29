@@ -1,4 +1,4 @@
-import React, { useCallback, useMemo } from "react";
+import React, { useCallback } from "react";
 
 import { ButtonWrapper, FormWrapper } from "./Shared";
 import Button from "../../elements/Button";
@@ -7,12 +7,7 @@ import H2 from "../../elements/H2";
 import useExperienceEntries from "../../hooks/useExperienceEntries";
 
 const EditCVWorkExp = () => {
-  const {
-    experienceEntries,
-    addEntry,
-    setEntry,
-    hasEntries,
-  } = useExperienceEntries();
+  const { experienceEntries, addEntry, hasEntries } = useExperienceEntries();
 
   const handleClick = useCallback(() => addEntry(), [addEntry]);
 

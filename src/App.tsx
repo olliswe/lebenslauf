@@ -8,6 +8,8 @@ import GlobalStyle from "./components/style/GlobalStyle";
 import Layout from "./components/layout/Layout";
 import MessageHub from "./components/message-hub/MessageHub";
 import EditCV from "./components/views/EditCV";
+import GitHubLogin from "./components/views/GitHubLogin";
+import Dashboard from "./components/dashboard/Dashboard";
 
 function App() {
   return (
@@ -17,8 +19,10 @@ function App() {
         <MessageHub />
         <Layout>
           <Switch>
+            <Route path="/login" component={GitHubLogin} />
             <Route path="/cv" component={EditCV} />
-            <Redirect from="/" to="/cv" />
+            <Route path="/dashboard" component={Dashboard} />
+            <Redirect from="/" to="/dashboard" />
           </Switch>
         </Layout>
       </BrowserRouter>
