@@ -10,6 +10,7 @@ import MessageHub from "./components/message-hub/MessageHub";
 import EditCV from "./components/views/EditCV";
 import GitHubLogin from "./components/views/GitHubLogin";
 import Dashboard from "./components/dashboard/Dashboard";
+import AuthState from "./components/authState/AuthState";
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
       <GlobalStyle />
       <BrowserRouter>
         <MessageHub />
+        <AuthState />
         <Layout>
           <Switch>
             <Route path="/login" component={GitHubLogin} />
