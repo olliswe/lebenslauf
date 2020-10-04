@@ -5,6 +5,8 @@ import queryString from "query-string";
 import axios from "axios";
 import { API_URL, GIT_CLIENT_ID, GIT_CLIENT_SECRET } from "../../configs/app";
 import get from "lodash/get";
+import useConvertToken from "../../hooks/useConvertToken";
+import useRefreshAuthLogic from "../../hooks/useRefreshAuthLogic";
 
 export enum AuthStates {
   pending = "NOT_AUTHENTICATED",
@@ -15,10 +17,12 @@ export enum AuthStates {
 interface IAuthState {
   authState: AuthStates;
   error: string;
-  token: string;
   setAuthState: (newState: AuthStates) => void;
-  setAuthFailure: (error: string) => void;
-  setAuthSuccess: (token: string) => void;
+  setAuthFailure: (error?: string) => void;
+  setAuthSuccess: (input: {
+    accessToken: string;
+    refreshToken: string;
+  }) => void;
 }
 
 const ACCESS_TOKEN_URL = `https://github.com/login/oauth/access_token?client_id=${GIT_CLIENT_ID}&client_secret=${GIT_CLIENT_SECRET}`;
@@ -26,14 +30,37 @@ const ACCESS_TOKEN_URL = `https://github.com/login/oauth/access_token?client_id=
 export const [useAuthState] = create<IAuthState>((set) => ({
   authState: AuthStates.pending,
   error: "",
-  token: "",
   setAuthState: (newState: AuthStates) =>
     set((state) => ({ authState: newState })),
   setAuthFailure: (error: string) =>
-    set((state) => ({ authState: AuthStates.pending, error, token: "" })),
-  setAuthSuccess: (token: string) =>
-    set((state) => ({ authState: AuthStates.authenticated, error: "", token })),
+    set((state) => ({
+      authState: AuthStates.pending,
+      error,
+      token: "",
+    })),
+  setAuthSuccess: ({ accessToken, refreshToken }) => {
+    localStorage.setItem("accessToken", accessToken);
+    localStorage.setItem("refreshToken", refreshToken);
+    return set((state) => ({
+      authState: AuthStates.authenticated,
+      error: "",
+    }));
+  },
 }));
+
+const defaultError = "Unable to login";
+
+export const useAuthError = () => {
+  const history = useHistory();
+  const setAuthFailure = useAuthState((state) => state.setAuthFailure);
+
+  const authError = useCallback((error = defaultError) => {
+    setAuthFailure(error);
+    history.push("/login");
+  }, []);
+
+  return authError;
+};
 
 const AuthState = () => {
   const { search } = useLocation();
@@ -43,17 +70,18 @@ const AuthState = () => {
   const state = params?.state;
   const authState = useAuthState((state) => state.authState);
   const setAuthState = useAuthState((state) => state.setAuthState);
-  const setAuthFailure = useAuthState((state) => state.setAuthFailure);
   const setAuthSuccess = useAuthState((state) => state.setAuthSuccess);
+  const convertGithubAccessToken = useConvertToken();
+  const authError = useAuthError();
+  useRefreshAuthLogic();
 
-  const authFailed = useCallback(
-    (error = "Unable to login") => {
-      // add Error
-      setAuthFailure(error);
-      history.push("/login");
-    },
-    [setAuthFailure, history]
-  );
+  useEffect(() => {
+    const accessToken = localStorage.getItem("accessToken");
+    const refreshToken = localStorage.getItem("refreshToken");
+    if (refreshToken && accessToken) {
+      setAuthSuccess({ accessToken, refreshToken });
+    }
+  }, []);
 
   const getGithubAccessToken = useCallback(
     async (code, state) => {
@@ -66,33 +94,18 @@ const AuthState = () => {
           }
         );
         if (!data || data.error || !data.accessToken) {
-          authFailed(
+          authError(
             "Error: " + get(data, "error_description", "Unable to login")
           );
           return { success: false };
         }
         return { success: true, accessToken: data.accessToken };
       } catch (e) {
-        authFailed();
+        authError();
         return { success: false };
       }
     },
-    [authFailed]
-  );
-
-  const convertGithubAccessToken = useCallback(
-    async (token) => {
-      try {
-        const result = await axios.post(
-          `${API_URL}/auth/convert-token?grant_type=convert_token&client_id=${GIT_CLIENT_ID}&client_secret=${GIT_CLIENT_SECRET}&backend=github&token=${token}`
-        );
-        const { access_token } = result.data;
-        setAuthSuccess(access_token);
-      } catch (e) {
-        authFailed();
-      }
-    },
-    [authFailed, setAuthSuccess]
+    [authError, history]
   );
 
   const login = useCallback(

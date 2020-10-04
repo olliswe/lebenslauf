@@ -1,5 +1,6 @@
 import { useCallback, useState } from "react";
 import axios from "axios";
+import useRefreshAuthLogic from "./useRefreshAuthLogic";
 
 export interface IUseImperativeRequest {
   path: string;
