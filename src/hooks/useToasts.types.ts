@@ -10,5 +10,6 @@ export type ToastMessage = {
   msg: string;
   cancel?: boolean;
   close?: boolean;
+  persist?: boolean;
   type: MessageType;
 };

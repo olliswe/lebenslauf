@@ -1,11 +1,10 @@
-import React, { useEffect } from "react";
+import React from "react";
 import styled from "styled-components";
 import { GIT_CLIENT_ID } from "../../configs/app";
 import GithubLoginBtn from "../../elements/GithubLoginBtn";
 import { Spin } from "antd";
 import ReactAnimatedEllipsis from "react-animated-ellipsis";
-import { AuthStates, useAuthState } from "../authState/AuthState";
-import useToastMessages from "../../hooks/useToastMessages";
+import useAuthState, { AuthStates } from "../../hooks/useAuthState";
 
 const Wrapper = styled.div`
   width: 100%;
@@ -25,15 +24,6 @@ const LOGIN_URL = `https://github.com/login/oauth/authorize?client_id=${GIT_CLIE
 
 const GitHubLogin = () => {
   const authState = useAuthState((state) => state.authState);
-  const authError = useAuthState((state) => state.error);
-  const { error } = useToastMessages();
-
-  useEffect(() => {
-    if (authError) {
-      error(authError);
-    }
-  }, [error, authError]);
-
   return (
     <Wrapper>
       {authState === AuthStates.loading ? (

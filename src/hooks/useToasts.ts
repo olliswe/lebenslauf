@@ -65,7 +65,11 @@ const [useToasts] = create((set, get) => ({
     clearTimeout(get().cancelItems.get(key));
   },
   clearItems: () => {
-    for (var key of get().cancelItems.keys()) {
+    for (const key of get().cancelItems.keys()) {
+      const item = get().items.find((c) => c.key === key);
+      if (item?.persist) {
+        return;
+      }
       clearTimeout(key);
     }
     set((_) => ({ items: [], cancelItems: new Map() }));

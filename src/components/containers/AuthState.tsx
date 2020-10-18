@@ -1,70 +1,33 @@
 import { useCallback, useEffect } from "react";
-import create from "zustand";
-import { useLocation, useHistory } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import queryString from "query-string";
 import axios from "axios";
-import { API_URL, GIT_CLIENT_ID, GIT_CLIENT_SECRET } from "../../configs/app";
+import { API_URL } from "../../configs/app";
 import get from "lodash/get";
 import useConvertToken from "../../hooks/useConvertToken";
 import useRefreshAuthLogic from "../../hooks/useRefreshAuthLogic";
-
-export enum AuthStates {
-  pending = "NOT_AUTHENTICATED",
-  loading = "LOADING",
-  authenticated = "AUTHENTICATED",
-}
-
-interface IAuthState {
-  authState: AuthStates;
-  error: string;
-  setAuthState: (newState: AuthStates) => void;
-  setAuthFailure: (error?: string) => void;
-  setAuthSuccess: (input: {
-    accessToken: string;
-    refreshToken: string;
-  }) => void;
-}
-
-const ACCESS_TOKEN_URL = `https://github.com/login/oauth/access_token?client_id=${GIT_CLIENT_ID}&client_secret=${GIT_CLIENT_SECRET}`;
-
-export const [useAuthState] = create<IAuthState>((set) => ({
-  authState: AuthStates.pending,
-  error: "",
-  setAuthState: (newState: AuthStates) =>
-    set((state) => ({ authState: newState })),
-  setAuthFailure: (error: string) =>
-    set((state) => ({
-      authState: AuthStates.pending,
-      error,
-      token: "",
-    })),
-  setAuthSuccess: ({ accessToken, refreshToken }) => {
-    localStorage.setItem("accessToken", accessToken);
-    localStorage.setItem("refreshToken", refreshToken);
-    return set((state) => ({
-      authState: AuthStates.authenticated,
-      error: "",
-    }));
-  },
-}));
+import useAuthState, { AuthStates } from "../../hooks/useAuthState";
+import useToastMessages from "../../hooks/useToastMessages";
 
 const defaultError = "Unable to login";
 
 export const useAuthError = () => {
-  const history = useHistory();
   const setAuthFailure = useAuthState((state) => state.setAuthFailure);
+  const { error: errorMsg } = useToastMessages();
 
-  const authError = useCallback((error = defaultError) => {
-    setAuthFailure(error);
-    history.push("/login");
-  }, []);
+  const authError = useCallback(
+    (error = defaultError) => {
+      setAuthFailure(error);
+      errorMsg(error, true);
+    },
+    [setAuthFailure, errorMsg]
+  );
 
   return authError;
 };
 
 const AuthState = () => {
   const { search } = useLocation();
-  const history = useHistory();
   const params = queryString.parse(search);
   const code = params?.code;
   const state = params?.state;
@@ -74,6 +37,7 @@ const AuthState = () => {
   const convertGithubAccessToken = useConvertToken();
   const authError = useAuthError();
   useRefreshAuthLogic();
+  useAuthError();
 
   useEffect(() => {
     const accessToken = localStorage.getItem("accessToken");
@@ -81,7 +45,7 @@ const AuthState = () => {
     if (refreshToken && accessToken) {
       setAuthSuccess({ accessToken, refreshToken });
     }
-  }, []);
+  }, [setAuthSuccess]);
 
   const getGithubAccessToken = useCallback(
     async (code, state) => {
@@ -105,7 +69,7 @@ const AuthState = () => {
         return { success: false };
       }
     },
-    [authError, history]
+    [authError]
   );
 
   const login = useCallback(

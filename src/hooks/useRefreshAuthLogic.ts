@@ -1,7 +1,7 @@
 import axios from "axios";
 import { API_URL } from "../configs/app";
-import { useAuthError } from "../components/authState/AuthState";
 import createAuthRefreshInterceptor from "axios-auth-refresh";
+import { useAuthError } from "../components/containers/AuthState";
 
 // Function that will be called to refresh authorization
 const useRefreshAuthLogic = () => {

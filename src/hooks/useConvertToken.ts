@@ -1,7 +1,8 @@
 import { useCallback } from "react";
 import axios from "axios";
 import { API_URL, GIT_CLIENT_ID, GIT_CLIENT_SECRET } from "../configs/app";
-import { useAuthError, useAuthState } from "../components/authState/AuthState";
+import { useAuthError } from "../components/containers/AuthState";
+import useAuthState from "./useAuthState";
 
 const useConvertToken = () => {
   const setAuthSuccess = useAuthState((state) => state.setAuthSuccess);
