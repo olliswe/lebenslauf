@@ -1,4 +1,4 @@
-import { useCV } from "./useCV";
+import { IUseCV, useCV } from "./useCV";
 import { useCallback, useMemo } from "react";
 import getEntrySetter from "../helpers/getEntrySetter";
 import removeEntryHelper from "../helpers/removeEntryHelper";
@@ -20,7 +20,7 @@ const useExperienceEntries = (index?: number) => {
   const set = useCV((state) => state.set);
   const setEntries = useCallback(
     (entries) =>
-      set((state) => {
+      set((state: IUseCV) => {
         state.cv.experienceEntries = entries;
       }),
     [set]
@@ -43,7 +43,7 @@ const useExperienceEntries = (index?: number) => {
     if (index === undefined) {
       return;
     }
-    set((state) => {
+    set((state: IUseCV) => {
       state.cv.experienceEntries = removeEntryHelper(
         state.cv.experienceEntries,
         index

@@ -5,7 +5,7 @@ import FormTextInput from "../../elements/FormTextInput";
 import { Col, Divider, Button as AntdButton } from "antd";
 import FormDatePicker from "../../elements/FormDatePicker";
 import FormTextArea from "../../elements/FormTextArea";
-import { useCV } from "../../hooks/useCV";
+import { IUseCV, useCV } from "../../hooks/useCV";
 import removeEntry from "../../helpers/removeEntryHelper";
 
 const EducationEntry = ({
@@ -17,7 +17,7 @@ const EducationEntry = ({
 }) => {
   const set = useCV((state) => state.set);
   const handleButtonClick = useCallback(() => {
-    set((state) => {
+    set((state: IUseCV) => {
       state.cv.educationEntries = removeEntry(state.cv.educationEntries, index);
     });
   }, [set, index]);

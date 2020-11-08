@@ -1,7 +1,7 @@
 import React, { useCallback, useMemo } from "react";
 
 import { ButtonWrapper, FormWrapper } from "./Shared";
-import { useCV } from "../../hooks/useCV";
+import { IUseCV, useCV } from "../../hooks/useCV";
 import Button from "../../elements/Button";
 import H2 from "../../elements/H2";
 import PersonalProjectEntry from "./PersonalProjectEntry";
@@ -33,7 +33,7 @@ const EditCVSideProj = () => {
 
   const handleClick = useCallback(
     (e) => {
-      set((state) => {
+      set((state: IUseCV) => {
         state.cv.personalProjectEntries = [
           ...state.cv.personalProjectEntries,
           INITIAL_STATE,

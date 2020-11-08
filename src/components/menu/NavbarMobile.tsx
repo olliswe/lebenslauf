@@ -112,7 +112,7 @@ const LinkWrapper = styled.div`
   padding: 1rem;
 `;
 
-const MenuBarMobile = ({ smallNavBar }) => {
+const MenuBarMobile = ({ smallNavBar }: { smallNavBar: boolean }) => {
   const collapseRef = useRef() as React.MutableRefObject<any>;
   const contentRef = useRef() as React.MutableRefObject<HTMLDivElement>;
   const [blockScroll, allowScroll] = useLockBodyScroll();

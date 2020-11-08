@@ -10,7 +10,7 @@ interface IAuthState {
   authState: AuthStates;
   error: string;
   setAuthState: (newState: AuthStates) => void;
-  setAuthFailure: (error?: string) => void;
+  setAuthFailure: (error: string) => void;
   setAuthSuccess: (input: {
     accessToken: string;
     refreshToken: string;

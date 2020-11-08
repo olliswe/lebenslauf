@@ -9,7 +9,7 @@ const Wrapper = styled.div`
   width: 100%;
 `;
 
-export const FormWrapper = ({ children }) => (
+export const FormWrapper = ({ children }: { children: React.ReactNode }) => (
   <Scrollbars
     renderTrackHorizontal={() => <div />}
     style={{

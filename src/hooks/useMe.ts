@@ -1,5 +1,5 @@
-import useSWR from "swr";
+import useQuery from "../queries/useQuery";
 
-const useMe = () => useSWR("/accounts/me");
+const useMe = () => useQuery("me", "/accounts/me");
 
 export default useMe;
