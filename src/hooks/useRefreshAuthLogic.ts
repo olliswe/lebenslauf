@@ -7,11 +7,11 @@ import { useAuthError } from "../components/containers/AuthState";
 const useRefreshAuthLogic = () => {
   const authError = useAuthError();
 
-  const refreshAuthLogic = (failedRequest) => {
+  const refreshAuthLogic = (failedRequest: any) => {
     const refreshToken = localStorage.getItem("refreshToken");
     if (!refreshToken) {
       authError("Error: please login again");
-      return;
+      return Promise.reject();
     }
     return axios
       .post(`${API_URL}/auth/token`, {
@@ -35,6 +35,7 @@ const useRefreshAuthLogic = () => {
       })
       .catch((error) => {
         authError("Error: please login again");
+        return Promise.reject();
       });
   };
 

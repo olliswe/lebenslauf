@@ -37,5 +37,5 @@ export interface ICV {
   educationEntries: IEducationEntry[];
   experienceEntries: IExperienceEntry[];
   personalProjectEntries: IPersonalProjectEntry[];
-  skills?: string[];
+  skills: string[];
 }

@@ -9,7 +9,6 @@ import Layout from "./components/layout/Layout";
 import MessageHub from "./components/message-hub/MessageHub";
 import AuthState from "./components/containers/AuthState";
 import MainRouter from "./components/routing/MainRouter";
-import SWRConfig from "./components/containers/SWRConfig";
 
 function App() {
   return (
@@ -18,11 +17,9 @@ function App() {
       <BrowserRouter>
         <MessageHub />
         <AuthState />
-        <SWRConfig>
-          <Layout>
-            <MainRouter />
-          </Layout>
-        </SWRConfig>
+        <Layout>
+          <MainRouter />
+        </Layout>
       </BrowserRouter>
     </ThemeProvider>
   );

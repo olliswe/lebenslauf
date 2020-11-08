@@ -3,7 +3,7 @@ import produce from "immer";
 
 import { ICV } from "../models/cv";
 
-type IUseCV = {
+export type IUseCV = {
   cv: ICV;
   error: string;
   loading: boolean;
@@ -32,7 +32,7 @@ const [useCV] = create<IUseCV>((set) => ({
   error: "",
   reset: () =>
     set((state) => ({ cv: INITIAL_CV_STATE, error: "", loading: false })),
-  set: (fn) => set(produce(fn)),
+  set: (fn: any) => set(produce(fn)),
 }));
 
 const useCVRemotes = () => {
@@ -41,7 +41,7 @@ const useCVRemotes = () => {
 
   //TODO: update methods
   const getCV = async () => {
-    set((state) => {
+    set((state: any) => {
       state.loading = true;
     });
     // const { data, error } = await makeRequest({});

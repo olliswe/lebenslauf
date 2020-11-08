@@ -66,7 +66,7 @@ const [useToasts] = create((set, get) => ({
   },
   clearItems: () => {
     for (const key of get().cancelItems.keys()) {
-      const item = get().items.find((c) => c.key === key);
+      const item = get().items.find((c: any) => c.key === key);
       if (item?.persist) {
         return;
       }

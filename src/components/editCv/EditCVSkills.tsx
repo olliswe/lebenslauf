@@ -2,7 +2,7 @@ import React, { useCallback } from "react";
 import H2 from "../../elements/H2";
 import { FormWrapper } from "./Shared";
 import SkillsSelector from "../../elements/SkillsSelector";
-import { useCV } from "../../hooks/useCV";
+import { IUseCV, useCV } from "../../hooks/useCV";
 
 const EditCVSkills = () => {
   const skills = useCV((state) => state.cv.skills);
@@ -10,7 +10,7 @@ const EditCVSkills = () => {
 
   const setSkills = useCallback(
     (input) => {
-      set((state) => {
+      set((state: IUseCV) => {
         state.cv.skills = input;
       });
     },

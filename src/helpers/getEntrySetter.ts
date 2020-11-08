@@ -1,4 +1,6 @@
-const getEntrySetter = (entries, stateSetter, index) => (entry) => {
+const getEntrySetter = (entries: any[], stateSetter: any, index?: number) => (
+  entry: any
+) => {
   if (index === undefined) {
     return;
   }
