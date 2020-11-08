@@ -28,6 +28,10 @@ const AppRouter = () => {
 const MainRouter = () => {
   const authState = useAuthState((state) => state.authState);
 
+  if (authState === AuthStates.pending) {
+    return <></>; // TODO: add loading spinner
+  }
+
   if (authState !== AuthStates.authenticated) {
     return <AuthRouter />;
   }

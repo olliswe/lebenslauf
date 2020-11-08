@@ -24,6 +24,7 @@ const LOGIN_URL = `https://github.com/login/oauth/authorize?client_id=${GIT_CLIE
 
 const GitHubLogin = () => {
   const authState = useAuthState((state) => state.authState);
+
   return (
     <Wrapper>
       {authState === AuthStates.loading ? (
