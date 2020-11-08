@@ -3,7 +3,8 @@ import { Redirect, Route, Switch } from "react-router-dom";
 import EditCV from "../views/EditCV";
 import Dashboard from "../dashboard/Dashboard";
 import GitHubLogin from "../views/GitHubLogin";
-import useAuthState, { AuthStates } from "../../hooks/useAuthState";
+import useAuthState, { AuthStates } from "../../stores/useAuthState";
+import useMe from "../../hooks/useMe";
 
 const AuthRouter = () => {
   return (
@@ -15,6 +16,7 @@ const AuthRouter = () => {
 };
 
 const AppRouter = () => {
+  useMe();
   return (
     <Switch>
       <Route path="/cv" component={EditCV} />

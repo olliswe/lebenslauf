@@ -4,7 +4,7 @@ import { GIT_CLIENT_ID } from "../../configs/app";
 import GithubLoginBtn from "../../elements/GithubLoginBtn";
 import { Spin } from "antd";
 import ReactAnimatedEllipsis from "react-animated-ellipsis";
-import useAuthState, { AuthStates } from "../../hooks/useAuthState";
+import useAuthState, { AuthStates } from "../../stores/useAuthState";
 
 const Wrapper = styled.div`
   width: 100%;

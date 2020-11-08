@@ -1,6 +1,6 @@
 import axios from "axios";
 import { API_URL, GIT_CLIENT_ID, GIT_CLIENT_SECRET } from "../configs/app";
-import useAuthState, { AuthStates } from "./useAuthState";
+import useAuthState, { AuthStates } from "../stores/useAuthState";
 import { useEffect } from "react";
 
 interface IResponse {

@@ -18,6 +18,7 @@ interface IAuthState {
     refreshToken: string;
   }) => void;
   setAuthToken: (accessToken: string) => void;
+  setLogout: () => void;
 }
 
 const [useAuthState] = create<IAuthState>((set) => ({
@@ -39,6 +40,10 @@ const [useAuthState] = create<IAuthState>((set) => ({
       error: "",
       token: accessToken,
     }));
+  },
+  setLogout: () => {
+    localStorage.setItem("refreshToken", "");
+    return set({ token: "", authState: AuthStates.notAuthenticated });
   },
   setAuthToken: (accessToken) => set({ token: accessToken }),
 }));
