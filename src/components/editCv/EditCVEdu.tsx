@@ -1,7 +1,7 @@
 import React, { useCallback, useMemo } from "react";
 
 import { ButtonWrapper, FormWrapper } from "./Shared";
-import { IUseCV, useCV } from "../../hooks/useCV";
+import { IUseCV, useCV } from "../../stores/useCV";
 import Button from "../../elements/Button";
 import EducationEntry from "./EducationEntry";
 import H2 from "../../elements/H2";

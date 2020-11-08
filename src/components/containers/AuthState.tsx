@@ -6,7 +6,7 @@ import { API_URL } from "../../configs/app";
 import get from "lodash/get";
 import useConvertToken from "../../hooks/useConvertToken";
 import useRefreshAuthLogic from "../../hooks/useRefreshAuthLogic";
-import useAuthState, { AuthStates } from "../../hooks/useAuthState";
+import useAuthState, { AuthStates } from "../../stores/useAuthState";
 import useToastMessages from "../../hooks/useToastMessages";
 import useLoadAuth from "../../hooks/useLoadAuth";
 
