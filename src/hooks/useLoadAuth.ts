@@ -6,7 +6,7 @@ import { useEffect } from "react";
 interface IResponse {
   data: { access_token?: string; refresh_token?: string };
 }
-// Function that will be called to refresh authorization
+
 const useLoadAuth = () => {
   const setAuthSuccess = useAuthState((state) => state.setAuthSuccess);
   const setAuthState = useAuthState((state) => state.setAuthState);
