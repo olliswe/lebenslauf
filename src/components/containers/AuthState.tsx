@@ -8,6 +8,7 @@ import useConvertToken from "../../hooks/useConvertToken";
 import useRefreshAuthLogic from "../../hooks/useRefreshAuthLogic";
 import useAuthState, { AuthStates } from "../../hooks/useAuthState";
 import useToastMessages from "../../hooks/useToastMessages";
+import useLoadAuth from "../../hooks/useLoadAuth";
 
 const defaultError = "Unable to login";
 
@@ -33,19 +34,10 @@ const AuthState = () => {
   const state = params?.state;
   const authState = useAuthState((state) => state.authState);
   const setAuthState = useAuthState((state) => state.setAuthState);
-  const setAuthSuccess = useAuthState((state) => state.setAuthSuccess);
   const convertGithubAccessToken = useConvertToken();
   const authError = useAuthError();
   useRefreshAuthLogic();
-  useAuthError();
-
-  useEffect(() => {
-    const accessToken = localStorage.getItem("accessToken");
-    const refreshToken = localStorage.getItem("refreshToken");
-    if (refreshToken && accessToken) {
-      setAuthSuccess({ accessToken, refreshToken });
-    }
-  }, [setAuthSuccess]);
+  useLoadAuth();
 
   const getGithubAccessToken = useCallback(
     async (code, state) => {
@@ -82,7 +74,7 @@ const AuthState = () => {
   );
 
   useEffect(() => {
-    if (code && state && authState === AuthStates.pending) {
+    if (code && state && authState === AuthStates.notAuthenticated) {
       setAuthState(AuthStates.loading);
     }
   }, [code, state, login, authState, setAuthState]);
