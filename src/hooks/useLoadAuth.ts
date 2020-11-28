@@ -4,7 +4,7 @@ import useAuthState, { AuthStates } from "../stores/useAuthState";
 import { useEffect } from "react";
 
 interface IResponse {
-  data: { access_token?: string; refresh_token?: string };
+  data: { accessToken?: string; refreshToken?: string };
 }
 
 const useLoadAuth = () => {
@@ -19,15 +19,15 @@ const useLoadAuth = () => {
       }
       try {
         const { data }: IResponse = await axios.post(`${API_URL}/auth/token`, {
-          grant_type: "refresh_token",
-          client_id: GIT_CLIENT_ID,
-          client_secret: GIT_CLIENT_SECRET,
-          refresh_token: refreshToken,
+          grantType: "refresh_token",
+          clientId: GIT_CLIENT_ID,
+          clientSecret: GIT_CLIENT_SECRET,
+          refreshToken: refreshToken,
         });
-        if (data.access_token && data.refresh_token) {
+        if (data.accessToken && data.refreshToken) {
           setAuthSuccess({
-            accessToken: data.access_token,
-            refreshToken: data.refresh_token,
+            accessToken: data.accessToken,
+            refreshToken: data.refreshToken,
           });
         }
       } catch (e) {

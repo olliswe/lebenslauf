@@ -17,19 +17,19 @@ const useRefreshAuthLogic = () => {
     }
     return axios
       .post(`${API_URL}/auth/token`, {
-        grant_type: "refresh_token",
-        client_id: GIT_CLIENT_ID,
-        client_secret: GIT_CLIENT_SECRET,
-        refresh_token: refreshToken,
+        grantType: "refresh_token",
+        clientId: GIT_CLIENT_ID,
+        clientSecret: GIT_CLIENT_SECRET,
+        refreshToken: refreshToken,
       })
       .then((tokenRefreshResponse) => {
-        setAuthToken(tokenRefreshResponse.data.access_token);
+        setAuthToken(tokenRefreshResponse.data.accessToken);
         localStorage.setItem(
           "refreshToken",
-          tokenRefreshResponse.data.refresh_token
+          tokenRefreshResponse.data.refreshToken
         );
         failedRequest.response.config.headers["Authorization"] =
-          "Bearer " + tokenRefreshResponse.data.access_token;
+          "Bearer " + tokenRefreshResponse.data.accessToken;
         return Promise.resolve();
       })
       .catch((error) => {

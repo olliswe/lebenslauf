@@ -18,6 +18,11 @@ export interface IExperienceEntry {
   githubProjectUrl?: string;
 }
 
+export interface ISkill {
+  id: string;
+  name: string;
+}
+
 export interface IPersonalProjectEntry {
   name: string;
   description?: string;
@@ -38,4 +43,10 @@ export interface ICV {
   experienceEntries: IExperienceEntry[];
   personalProjectEntries: IPersonalProjectEntry[];
   skills: string[];
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface IGetCV extends Omit<ICV, "skills"> {
+  skills: ISkill[];
 }

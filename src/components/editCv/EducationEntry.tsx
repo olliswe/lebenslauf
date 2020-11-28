@@ -5,7 +5,7 @@ import FormTextInput from "../../elements/FormTextInput";
 import { Col, Divider, Button as AntdButton } from "antd";
 import FormDatePicker from "../../elements/FormDatePicker";
 import FormTextArea from "../../elements/FormTextArea";
-import { IUseCV, useCV } from "../../stores/useCV";
+import useCV, { IUseCV } from "../../stores/useCV";
 import removeEntry from "../../helpers/removeEntryHelper";
 
 const EducationEntry = ({

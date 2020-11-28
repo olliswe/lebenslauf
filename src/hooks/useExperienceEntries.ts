@@ -1,4 +1,4 @@
-import { IUseCV, useCV } from "../stores/useCV";
+import useCV, { IUseCV } from "../stores/useCV";
 import { useCallback, useMemo } from "react";
 import getEntrySetter from "../helpers/getEntrySetter";
 import removeEntryHelper from "../helpers/removeEntryHelper";
