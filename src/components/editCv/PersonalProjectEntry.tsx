@@ -4,7 +4,7 @@ import { EntryWrapper, RemoveButtonWrapper, StyledRow } from "./Shared";
 import FormTextInput from "../../elements/FormTextInput";
 import { Divider, Button as AntdButton } from "antd";
 import FormTextArea from "../../elements/FormTextArea";
-import { IUseCV, useCV } from "../../stores/useCV";
+import useCV, { IUseCV } from "../../stores/useCV";
 import removeEntry from "../../helpers/removeEntryHelper";
 
 const PersonalProjectEntry = ({

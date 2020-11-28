@@ -14,11 +14,11 @@ const useConvertToken = () => {
         const result = await axios.post(
           `${API_URL}/auth/convert-token?grant_type=convert_token&client_id=${GIT_CLIENT_ID}&client_secret=${GIT_CLIENT_SECRET}&backend=github&token=${token}`
         );
-        const { access_token, refresh_token } = result.data;
+        const { accessToken, refreshToken } = result.data;
         console.log(result.data);
         setAuthSuccess({
-          accessToken: access_token,
-          refreshToken: refresh_token,
+          accessToken: accessToken,
+          refreshToken: refreshToken,
         });
       } catch (e) {
         authError();

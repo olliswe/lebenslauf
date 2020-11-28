@@ -9,6 +9,7 @@ import EditCVSideProj from "../editCv/EditCVSideProj";
 import EditCVSkills from "../editCv/EditCVSkills";
 import CtaButton from "../../elements/CtaButton";
 import { Redirect, Route, Switch } from "react-router-dom";
+import useGetCV from "../../hooks/useGetCV";
 
 const Wrapper = styled.div`
   display: flex;
@@ -53,6 +54,8 @@ export const tabs = [
 ];
 
 const EditCV = () => {
+  useGetCV();
+
   return (
     <Wrapper>
       <EditCVSideNav />
