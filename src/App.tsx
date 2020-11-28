@@ -1,7 +1,8 @@
 import { BrowserRouter } from "react-router-dom";
 import { ThemeProvider } from "styled-components";
 import React from "react";
-import "./assets/antd-overwrites.css";
+// import "./assets/antd-overwrites.css";
+import "./App.less";
 
 import { theme } from "./configs/theme";
 import GlobalStyle from "./components/style/GlobalStyle";
