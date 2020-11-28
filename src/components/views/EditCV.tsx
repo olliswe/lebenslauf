@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import EditCVSideNav from "../editCv/EditCVSideNav";
 import styled from "styled-components";
 import H1 from "../../elements/H1";
@@ -9,6 +9,8 @@ import EditCVSideProj from "../editCv/EditCVSideProj";
 import EditCVSkills from "../editCv/EditCVSkills";
 import CtaButton from "../../elements/CtaButton";
 import { Redirect, Route, Switch } from "react-router-dom";
+import useQuery from "../../queries/useQuery";
+import useGetCV from "../../hooks/useGetCV";
 
 const Wrapper = styled.div`
   display: flex;
@@ -53,6 +55,8 @@ export const tabs = [
 ];
 
 const EditCV = () => {
+  useGetCV();
+
   return (
     <Wrapper>
       <EditCVSideNav />
