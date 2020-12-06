@@ -15,8 +15,11 @@ const ExperienceEntry = ({
   entry: IExperienceEntry;
   index: number;
 }) => {
-  const { removeEntry } = useExperienceEntries(index);
-  const handleButtonClick = useCallback(() => removeEntry(), [removeEntry]);
+  const { removeEntry } = useExperienceEntries();
+  const handleButtonClick = useCallback(() => removeEntry(index), [
+    removeEntry,
+    index,
+  ]);
 
   return (
     <EntryWrapper>

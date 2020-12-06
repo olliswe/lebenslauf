@@ -76,12 +76,17 @@ export const INITIAL_EDUCATION_STATE: IEducationEntry = {
   current: false,
 };
 
-export const INITIAL_EXPERIENCE_STATE = {
+export const INITIAL_EXPERIENCE_STATE: IExperienceEntry = {
   role: "",
   company: "",
-  start_month: "",
-  start_year: "",
-  end_month: "",
+  startDate: "",
+  endDate: "",
   current: false,
+  githubProjectUrl: "",
+};
+
+export const INITIAL_PERSONAL_PROJECT: IPersonalProjectEntry = {
+  name: "",
+  description: "",
   githubProjectUrl: "",
 };

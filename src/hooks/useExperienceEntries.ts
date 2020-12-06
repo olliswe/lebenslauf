@@ -4,7 +4,7 @@ import getEntrySetter from "../helpers/getEntrySetter";
 import removeEntryHelper from "../helpers/removeEntryHelper";
 import { IExperienceEntry, INITIAL_EDUCATION_STATE } from "../models/cv";
 
-const useExperienceEntries = (index?: number) => {
+const useExperienceEntries = () => {
   const experienceEntries = useCV((state) => state.cv.experienceEntries);
   const set = useCV((state) => state.set);
   const setEntries = useCallback(
@@ -14,11 +14,10 @@ const useExperienceEntries = (index?: number) => {
       }),
     [set]
   );
-  const setEntry: (entry: IExperienceEntry) => void = getEntrySetter(
-    experienceEntries,
-    setEntries,
+  const setEntry: (entry: IExperienceEntry, index: number) => void = (
+    entry,
     index
-  );
+  ) => getEntrySetter(experienceEntries, setEntries, index);
 
   const hasEntries = useMemo(() => experienceEntries.length > 0, [
     experienceEntries,
@@ -28,17 +27,17 @@ const useExperienceEntries = (index?: number) => {
     setEntries([...experienceEntries, INITIAL_EDUCATION_STATE]);
   }, [setEntries, experienceEntries]);
 
-  const removeEntry = useCallback(() => {
-    if (index === undefined) {
-      return;
-    }
-    set((state: IUseCV) => {
-      state.cv.experienceEntries = removeEntryHelper(
-        state.cv.experienceEntries,
-        index
-      );
-    });
-  }, [set, index]);
+  const removeEntry = useCallback(
+    (index: number) => {
+      set((state: IUseCV) => {
+        state.cv.experienceEntries = removeEntryHelper(
+          state.cv.experienceEntries,
+          index
+        );
+      });
+    },
+    [set]
+  );
 
   return {
     experienceEntries,

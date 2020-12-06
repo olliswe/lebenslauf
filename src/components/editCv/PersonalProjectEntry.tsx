@@ -2,10 +2,9 @@ import React, { useCallback } from "react";
 import { IPersonalProjectEntry } from "../../models/cv";
 import { EntryWrapper, RemoveButtonWrapper, StyledRow } from "./Shared";
 import FormTextInput from "../../elements/FormTextInput";
-import { Divider, Button as AntdButton } from "antd";
+import { Button as AntdButton, Divider } from "antd";
 import FormTextArea from "../../elements/FormTextArea";
-import useCV, { IUseCV } from "../../stores/useCV";
-import removeEntry from "../../helpers/removeEntryHelper";
+import usePersonalProjects from "../../hooks/usePersonalProjects";
 
 const PersonalProjectEntry = ({
   entry,
@@ -14,15 +13,11 @@ const PersonalProjectEntry = ({
   entry: IPersonalProjectEntry;
   index: number;
 }) => {
-  const set = useCV((state) => state.set);
-  const handleButtonClick = useCallback(() => {
-    set((state: IUseCV) => {
-      state.cv.personalProjectEntries = removeEntry(
-        state.cv.personalProjectEntries,
-        index
-      );
-    });
-  }, [set, index]);
+  const { removeEntry } = usePersonalProjects();
+  const handleButtonClick = useCallback(() => removeEntry(index), [
+    removeEntry,
+    index,
+  ]);
 
   return (
     <EntryWrapper>
