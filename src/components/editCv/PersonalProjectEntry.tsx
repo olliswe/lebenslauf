@@ -38,13 +38,20 @@ const PersonalProjectEntry = ({
         </AntdButton>
       </RemoveButtonWrapper>
       <StyledRow>
-        <FormTextInput label={"Name"} />
+        <FormTextInput label={"Name"} value={entry.name} />
       </StyledRow>
       <StyledRow>
-        <FormTextArea label={"Description"} rows={3} />
+        <FormTextArea
+          label={"Description"}
+          rows={3}
+          value={entry.description}
+        />
       </StyledRow>
       <StyledRow>
-        <FormTextInput label={"GitHub Project URL"} />
+        <FormTextInput
+          label={"GitHub Project URL"}
+          value={entry.githubProjectUrl}
+        />
       </StyledRow>
       <Divider />
     </EntryWrapper>

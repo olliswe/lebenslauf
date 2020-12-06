@@ -2,11 +2,10 @@ import React, { useCallback } from "react";
 import { IExperienceEntry } from "../../models/cv";
 import { EntryWrapper, RemoveButtonWrapper, StyledRow } from "./Shared";
 import FormTextInput from "../../elements/FormTextInput";
-import { Col, Button as AntdButton } from "antd";
+import { Button as AntdButton, Col } from "antd";
 import FormDatePicker from "../../elements/FormDatePicker";
 import FormTextArea from "../../elements/FormTextArea";
 import useExperienceEntries from "../../hooks/useExperienceEntries";
-import SkillsSelector from "../../elements/SkillsSelector";
 import { Divider } from "@material-ui/core";
 
 const ExperienceEntry = ({
@@ -33,24 +32,40 @@ const ExperienceEntry = ({
         </AntdButton>
       </RemoveButtonWrapper>
       <StyledRow>
-        <FormTextInput label={"Role"} />
+        <FormTextInput label={"Role"} value={entry.role} />
       </StyledRow>
       <StyledRow>
-        <FormTextInput label={"Company"} />
+        <FormTextInput label={"Company"} value={entry.company} />
       </StyledRow>
       <StyledRow gutter={24}>
         <Col span={12}>
-          <FormDatePicker label={"Start Date"} width={"80%"} />
+          <FormDatePicker
+            label={"Start Date"}
+            width={"80%"}
+            value={entry.startDate}
+          />
         </Col>
         <Col span={12}>
-          <FormDatePicker label={"End Date"} width={"80%"} />
+          <FormDatePicker
+            label={"End Date"}
+            width={"80%"}
+            value={entry.endDate}
+          />
         </Col>
       </StyledRow>
       <StyledRow>
-        <FormTextArea label={"Description"} rows={3} />
+        <FormTextArea
+          label={"Description"}
+          rows={3}
+          value={entry.description}
+        />
       </StyledRow>
       <StyledRow>
-        <FormTextInput label={"GitHub Project URL"} rows={3} />
+        <FormTextInput
+          label={"GitHub Project URL"}
+          rows={3}
+          value={entry.githubProjectUrl}
+        />
       </StyledRow>
       <Divider />
     </EntryWrapper>

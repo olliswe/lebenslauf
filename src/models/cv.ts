@@ -14,6 +14,7 @@ export interface IExperienceEntry {
   endDate?: string;
   current: boolean;
   githubProjectUrl?: string;
+  description?: string;
 }
 
 export interface ISkill {
@@ -73,4 +74,14 @@ export const INITIAL_EDUCATION_STATE: IEducationEntry = {
   endDate: "",
   description: "",
   current: false,
+};
+
+export const INITIAL_EXPERIENCE_STATE = {
+  role: "",
+  company: "",
+  start_month: "",
+  start_year: "",
+  end_month: "",
+  current: false,
+  githubProjectUrl: "",
 };

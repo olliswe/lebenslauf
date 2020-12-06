@@ -2,18 +2,7 @@ import useCV, { IUseCV } from "../stores/useCV";
 import { useCallback, useMemo } from "react";
 import getEntrySetter from "../helpers/getEntrySetter";
 import removeEntryHelper from "../helpers/removeEntryHelper";
-import { IExperienceEntry } from "../models/cv";
-
-const INITIAL_STATE = {
-  role: "",
-  company: "",
-  start_month: "",
-  start_year: "",
-  end_month: "",
-  current: false,
-  techStack: [],
-  githubProjectUrl: "",
-};
+import { IExperienceEntry, INITIAL_EDUCATION_STATE } from "../models/cv";
 
 const useExperienceEntries = (index?: number) => {
   const experienceEntries = useCV((state) => state.cv.experienceEntries);
@@ -36,7 +25,7 @@ const useExperienceEntries = (index?: number) => {
   ]);
 
   const addEntry = useCallback(() => {
-    setEntries([...experienceEntries, INITIAL_STATE]);
+    setEntries([...experienceEntries, INITIAL_EDUCATION_STATE]);
   }, [setEntries, experienceEntries]);
 
   const removeEntry = useCallback(() => {

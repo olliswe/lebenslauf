@@ -9,7 +9,7 @@ interface IFormDatePicker {
   error?: string;
   width?: string;
   mb?: string;
-  value: string;
+  value?: string;
 }
 
 const Wrapper = styled.div`
