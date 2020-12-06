@@ -2,11 +2,10 @@ import React, { useCallback } from "react";
 import { IEducationEntry } from "../../models/cv";
 import { EntryWrapper, RemoveButtonWrapper, StyledRow } from "./Shared";
 import FormTextInput from "../../elements/FormTextInput";
-import { Col, Divider, Button as AntdButton } from "antd";
+import { Button as AntdButton, Col, Divider } from "antd";
 import FormDatePicker from "../../elements/FormDatePicker";
 import FormTextArea from "../../elements/FormTextArea";
-import useCV, { IUseCV } from "../../stores/useCV";
-import removeEntry from "../../helpers/removeEntryHelper";
+import useEducationEntries from "../../hooks/useEducationEntries";
 
 const EducationEntry = ({
   entry,
@@ -15,12 +14,11 @@ const EducationEntry = ({
   entry: IEducationEntry;
   index: number;
 }) => {
-  const set = useCV((state) => state.set);
-  const handleButtonClick = useCallback(() => {
-    set((state: IUseCV) => {
-      state.cv.educationEntries = removeEntry(state.cv.educationEntries, index);
-    });
-  }, [set, index]);
+  const { removeEntry } = useEducationEntries();
+  const handleButtonClick = useCallback(() => removeEntry(index), [
+    removeEntry,
+    index,
+  ]);
 
   return (
     <EntryWrapper>
@@ -36,21 +34,33 @@ const EducationEntry = ({
         </AntdButton>
       </RemoveButtonWrapper>
       <StyledRow>
-        <FormTextInput label={"Institution"} />
+        <FormTextInput label={"Institution"} value={entry.institution} />
       </StyledRow>
       <StyledRow>
-        <FormTextInput label={"Degree Title"} />
+        <FormTextInput label={"Degree Title"} value={entry.degree} />
       </StyledRow>
       <StyledRow gutter={24}>
         <Col span={12}>
-          <FormDatePicker label={"Start Date"} width={"80%"} />
+          <FormDatePicker
+            label={"Start Date"}
+            width={"80%"}
+            value={entry.startDate}
+          />
         </Col>
         <Col span={12}>
-          <FormDatePicker label={"End Date"} width={"80%"} />
+          <FormDatePicker
+            label={"End Date"}
+            width={"80%"}
+            value={entry.endDate}
+          />
         </Col>
       </StyledRow>
       <StyledRow>
-        <FormTextArea label={"Description"} rows={3} />
+        <FormTextArea
+          label={"Description"}
+          rows={3}
+          value={entry.description}
+        />
       </StyledRow>
       <Divider />
     </EntryWrapper>

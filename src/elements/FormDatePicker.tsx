@@ -2,12 +2,14 @@ import React from "react";
 import { DatePicker } from "antd";
 import Label from "./Label";
 import styled from "styled-components";
+import moment from "moment";
 
 interface IFormDatePicker {
   label?: string;
   error?: string;
   width?: string;
   mb?: string;
+  value?: string;
 }
 
 const Wrapper = styled.div`
@@ -18,6 +20,7 @@ const FormDatePicker = ({
   label,
   error,
   width,
+  value,
   ...rest
 }: IFormDatePicker & any) => {
   return (
@@ -26,7 +29,11 @@ const FormDatePicker = ({
         <Label>{label}</Label>
       </Wrapper>
       <div>
-        <DatePicker {...rest} style={{ width: width || "100%" }} />
+        <DatePicker
+          {...rest}
+          defaultValue={value ? moment(value, "YYYY-MM-DD") : undefined}
+          style={{ width: width || "100%" }}
+        />
       </div>
     </div>
   );

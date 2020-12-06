@@ -1,53 +1,21 @@
-import React, { useCallback, useMemo } from "react";
+import React, { useCallback } from "react";
 
 import { ButtonWrapper, FormWrapper } from "./Shared";
-import useCV, { IUseCV } from "../../stores/useCV";
 import Button from "../../elements/Button";
 import H2 from "../../elements/H2";
 import PersonalProjectEntry from "./PersonalProjectEntry";
-
-//
-// export interface IPersonalProjectEntry {
-//     name: string;
-//     description?: string;
-//     skills: string[];
-//     githubProjectUrl?: string;
-// }
-
-const INITIAL_STATE = {
-  name: "",
-  description: "",
-  skills: [],
-  githubProjectUrl: "",
-};
+import usePersonalProjects from "../../hooks/usePersonalProjects";
 
 const EditCVSideProj = () => {
-  const personalProjectEntries = useCV(
-    (state) => state.cv.personalProjectEntries
-  );
-  const set = useCV((state) => state.set);
+  const { personalProjects, addEntry, hasEntries } = usePersonalProjects();
 
-  const hasEntries = useMemo(() => personalProjectEntries.length > 0, [
-    personalProjectEntries,
-  ]);
-
-  const handleClick = useCallback(
-    (e) => {
-      set((state: IUseCV) => {
-        state.cv.personalProjectEntries = [
-          ...state.cv.personalProjectEntries,
-          INITIAL_STATE,
-        ];
-      });
-    },
-    [set]
-  );
+  const handleClick = useCallback(() => addEntry(), [addEntry]);
 
   return (
     <div>
       <H2>Personal Projects</H2>
       <FormWrapper>
-        {personalProjectEntries.map((entry, index) => (
+        {personalProjects.map((entry, index) => (
           <PersonalProjectEntry entry={entry} key={index} index={index} />
         ))}
         <ButtonWrapper centered={!hasEntries}>

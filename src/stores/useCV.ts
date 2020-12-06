@@ -1,30 +1,13 @@
 import create from "zustand";
 import produce from "immer";
 
-import { ICV } from "../models/cv";
+import { ICV, INITIAL_CV_STATE } from "../models/cv";
 
 export type IUseCV = {
   cv: ICV;
   loading: boolean;
   set: any;
   reset: any;
-};
-
-const INITIAL_CV_STATE = {
-  name: "",
-  position: "",
-  bio: "",
-  location: "",
-  email: "",
-  phone: "",
-  homepageUrl: "",
-  linkedinUrl: "",
-  educationEntries: [],
-  experienceEntries: [],
-  personalProjectEntries: [],
-  skills: [],
-  createdAt: "",
-  updatedAt: "",
 };
 
 const [useCV] = create<IUseCV>((set) => ({
