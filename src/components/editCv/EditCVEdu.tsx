@@ -7,7 +7,11 @@ import H2 from "../../elements/H2";
 import useEducationEntries from "../../hooks/useEducationEntries";
 
 const EditCVEdu = () => {
-  const { educationEntries, addEntry, hasEntries } = useEducationEntries();
+  const {
+    entries: educationEntries,
+    addEntry,
+    hasEntries,
+  } = useEducationEntries();
 
   const handleClick = useCallback(() => addEntry(), [addEntry]);
 
