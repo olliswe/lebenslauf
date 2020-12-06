@@ -1,8 +1,8 @@
 export interface IEducationEntry {
   institution: string;
   degree: string;
-  start_year: string;
-  end_year?: string;
+  startDate: string;
+  endDate?: string;
   description?: string;
   current: boolean;
 }
@@ -10,11 +10,9 @@ export interface IEducationEntry {
 export interface IExperienceEntry {
   role: string;
   company: string;
-  start_month: string;
-  start_year: string;
-  end_month?: string;
+  startDate: string;
+  endDate?: string;
   current: boolean;
-  techStack?: string[];
   githubProjectUrl?: string;
 }
 
@@ -50,3 +48,29 @@ export interface ICV {
 export interface IGetCV extends Omit<ICV, "skills"> {
   skills: ISkill[];
 }
+
+export const INITIAL_CV_STATE = {
+  name: "",
+  position: "",
+  bio: "",
+  location: "",
+  email: "",
+  phone: "",
+  homepageUrl: "",
+  linkedinUrl: "",
+  educationEntries: [],
+  experienceEntries: [],
+  personalProjectEntries: [],
+  skills: [],
+  createdAt: "",
+  updatedAt: "",
+};
+
+export const INITIAL_EDUCATION_STATE: IEducationEntry = {
+  institution: "",
+  degree: "",
+  startDate: "",
+  endDate: "",
+  description: "",
+  current: false,
+};

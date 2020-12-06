@@ -36,21 +36,33 @@ const EducationEntry = ({
         </AntdButton>
       </RemoveButtonWrapper>
       <StyledRow>
-        <FormTextInput label={"Institution"} />
+        <FormTextInput label={"Institution"} value={entry.institution} />
       </StyledRow>
       <StyledRow>
-        <FormTextInput label={"Degree Title"} />
+        <FormTextInput label={"Degree Title"} value={entry.degree} />
       </StyledRow>
       <StyledRow gutter={24}>
         <Col span={12}>
-          <FormDatePicker label={"Start Date"} width={"80%"} />
+          <FormDatePicker
+            label={"Start Date"}
+            width={"80%"}
+            value={entry.startDate}
+          />
         </Col>
         <Col span={12}>
-          <FormDatePicker label={"End Date"} width={"80%"} />
+          <FormDatePicker
+            label={"End Date"}
+            width={"80%"}
+            value={entry.endDate}
+          />
         </Col>
       </StyledRow>
       <StyledRow>
-        <FormTextArea label={"Description"} rows={3} />
+        <FormTextArea
+          label={"Description"}
+          rows={3}
+          value={entry.description}
+        />
       </StyledRow>
       <Divider />
     </EntryWrapper>

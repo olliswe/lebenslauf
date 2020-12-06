@@ -5,15 +5,7 @@ import useCV, { IUseCV } from "../../stores/useCV";
 import Button from "../../elements/Button";
 import EducationEntry from "./EducationEntry";
 import H2 from "../../elements/H2";
-
-const INITIAL_STATE = {
-  institution: "",
-  degree: "",
-  start_year: "",
-  end_year: "",
-  description: "",
-  current: false,
-};
+import { INITIAL_EDUCATION_STATE } from "../../models/cv";
 
 const EditCVEdu = () => {
   const educationEntries = useCV((state) => state.cv.educationEntries);
@@ -28,7 +20,7 @@ const EditCVEdu = () => {
       set((state: IUseCV) => {
         state.cv.educationEntries = [
           ...state.cv.educationEntries,
-          INITIAL_STATE,
+          INITIAL_EDUCATION_STATE,
         ];
       });
     },

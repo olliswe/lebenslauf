@@ -52,15 +52,6 @@ const ExperienceEntry = ({
       <StyledRow>
         <FormTextInput label={"GitHub Project URL"} rows={3} />
       </StyledRow>
-      <StyledRow mb={"0"}>
-        <SkillsSelector
-          skills={["React"]}
-          setSkills={() => {}}
-          label={"Tech Stack"}
-          chipFontSize={"0.8rem"}
-          chipSize={"small"}
-        />
-      </StyledRow>
       <Divider />
     </EntryWrapper>
   );
