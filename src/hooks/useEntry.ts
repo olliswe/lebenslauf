@@ -1,6 +1,5 @@
 import useCV, { IUseCV } from "../stores/useCV";
 import { useCallback, useMemo } from "react";
-import getEntrySetter from "../helpers/getEntrySetter";
 import removeEntryHelper from "../helpers/removeEntryHelper";
 import {
   IEducationEntry,
@@ -35,8 +34,14 @@ const useEntry = <T extends TEntry>({
       }),
     [set, entryName]
   );
-  const setEntry: (entries: Array<T>, index: number) => void = (entry, index) =>
-    getEntrySetter(entries, setEntries, index);
+  const setEntry = useCallback(
+    (entry: T, index: number) => {
+      const entriesCopy = [...entries];
+      entriesCopy.splice(index, 1, entry);
+      setEntries(entriesCopy);
+    },
+    [entries, setEntries]
+  );
 
   const hasEntries = useMemo(() => entries.length > 0, [entries]);
 
@@ -68,6 +73,19 @@ const useEntry = <T extends TEntry>({
     [entries, requiredFields]
   );
 
+  const handleChange = useCallback(
+    ({ index, name, value }: { index: number; name: keyof T; value: any }) => {
+      const entry = entries[index];
+      console.log(entry, name, value);
+      if (!entry) {
+        return;
+      }
+      const newEntry = { ...entry, [name]: value };
+      setEntry(newEntry, index);
+    },
+    [entries, setEntry]
+  );
+
   return {
     entries,
     setEntries,
@@ -76,6 +94,7 @@ const useEntry = <T extends TEntry>({
     addEntry,
     removeEntry,
     isInvalid,
+    handleChange,
   };
 };
 

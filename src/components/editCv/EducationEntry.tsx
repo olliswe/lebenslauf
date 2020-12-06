@@ -14,11 +14,15 @@ const EducationEntry = ({
   entry: IEducationEntry;
   index: number;
 }) => {
-  const { removeEntry } = useEducationEntries();
+  const { removeEntry, handleChange } = useEducationEntries();
   const handleButtonClick = useCallback(() => removeEntry(index), [
     removeEntry,
     index,
   ]);
+
+  const onTextChange = (event: any) => {
+    handleChange({ index, value: event.target.value, name: event.target.name });
+  };
 
   return (
     <EntryWrapper>
@@ -34,10 +38,20 @@ const EducationEntry = ({
         </AntdButton>
       </RemoveButtonWrapper>
       <StyledRow>
-        <FormTextInput label={"Institution"} value={entry.institution} />
+        <FormTextInput
+          name="institution"
+          label={"Institution"}
+          value={entry.institution}
+          onChange={onTextChange}
+        />
       </StyledRow>
       <StyledRow>
-        <FormTextInput label={"Degree Title"} value={entry.degree} />
+        <FormTextInput
+          name="degree"
+          label={"Degree Title"}
+          value={entry.degree}
+          onChange={onTextChange}
+        />
       </StyledRow>
       <StyledRow gutter={24}>
         <Col span={12}>
@@ -57,9 +71,11 @@ const EducationEntry = ({
       </StyledRow>
       <StyledRow>
         <FormTextArea
+          name="description"
           label={"Description"}
           rows={3}
           value={entry.description}
+          onChange={onTextChange}
         />
       </StyledRow>
       <Divider />
