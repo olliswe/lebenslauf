@@ -76,7 +76,6 @@ const useEntry = <T extends TEntry>({
   const handleChange = useCallback(
     ({ index, name, value }: { index: number; name: keyof T; value: any }) => {
       const entry = entries[index];
-      console.log(entry, name, value);
       if (!entry) {
         return;
       }

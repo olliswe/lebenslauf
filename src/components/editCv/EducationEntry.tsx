@@ -24,6 +24,10 @@ const EducationEntry = ({
     handleChange({ index, value: event.target.value, name: event.target.name });
   };
 
+  const onDateChange = (date: string, name: "endDate" | "startDate") => {
+    handleChange({ index, value: date, name: name });
+  };
+
   return (
     <EntryWrapper>
       <RemoveButtonWrapper>
@@ -59,6 +63,9 @@ const EducationEntry = ({
             label={"Start Date"}
             width={"80%"}
             value={entry.startDate}
+            onChange={(moment: any, date: string) =>
+              onDateChange(date, "startDate")
+            }
           />
         </Col>
         <Col span={12}>
@@ -66,6 +73,9 @@ const EducationEntry = ({
             label={"End Date"}
             width={"80%"}
             value={entry.endDate}
+            onChange={(moment: any, date: string) =>
+              onDateChange(date, "endDate")
+            }
           />
         </Col>
       </StyledRow>
