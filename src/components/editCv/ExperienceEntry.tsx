@@ -15,11 +15,19 @@ const ExperienceEntry = ({
   entry: IExperienceEntry;
   index: number;
 }) => {
-  const { removeEntry } = useExperienceEntries();
+  const { removeEntry, handleChange } = useExperienceEntries();
   const handleButtonClick = useCallback(() => removeEntry(index), [
     removeEntry,
     index,
   ]);
+
+  const onTextChange = (event: any) => {
+    handleChange({ index, value: event.target.value, name: event.target.name });
+  };
+
+  const onDateChange = (date: string, name: "endDate" | "startDate") => {
+    handleChange({ index, value: date, name: name });
+  };
 
   return (
     <EntryWrapper>
@@ -35,10 +43,18 @@ const ExperienceEntry = ({
         </AntdButton>
       </RemoveButtonWrapper>
       <StyledRow>
-        <FormTextInput label={"Role"} value={entry.role} />
+        <FormTextInput
+          label={"Role"}
+          value={entry.role}
+          onChange={onTextChange}
+        />
       </StyledRow>
       <StyledRow>
-        <FormTextInput label={"Company"} value={entry.company} />
+        <FormTextInput
+          label={"Company"}
+          value={entry.company}
+          onChange={onTextChange}
+        />
       </StyledRow>
       <StyledRow gutter={24}>
         <Col span={12}>
@@ -46,6 +62,9 @@ const ExperienceEntry = ({
             label={"Start Date"}
             width={"80%"}
             value={entry.startDate}
+            onChange={(moment: any, date: string) =>
+              onDateChange(date, "startDate")
+            }
           />
         </Col>
         <Col span={12}>
@@ -53,6 +72,9 @@ const ExperienceEntry = ({
             label={"End Date"}
             width={"80%"}
             value={entry.endDate}
+            onChange={(moment: any, date: string) =>
+              onDateChange(date, "startDate")
+            }
           />
         </Col>
       </StyledRow>
@@ -61,6 +83,7 @@ const ExperienceEntry = ({
           label={"Description"}
           rows={3}
           value={entry.description}
+          onChange={onTextChange}
         />
       </StyledRow>
       <StyledRow>
@@ -68,6 +91,7 @@ const ExperienceEntry = ({
           label={"GitHub Project URL"}
           rows={3}
           value={entry.githubProjectUrl}
+          onChange={onTextChange}
         />
       </StyledRow>
       <Divider />
