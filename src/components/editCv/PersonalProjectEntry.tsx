@@ -13,11 +13,15 @@ const PersonalProjectEntry = ({
   entry: IPersonalProjectEntry;
   index: number;
 }) => {
-  const { removeEntry } = usePersonalProjects();
+  const { removeEntry, handleChange } = usePersonalProjects();
   const handleButtonClick = useCallback(() => removeEntry(index), [
     removeEntry,
     index,
   ]);
+
+  const onTextChange = (event: any) => {
+    handleChange({ index, value: event.target.value, name: event.target.name });
+  };
 
   return (
     <EntryWrapper>
@@ -33,19 +37,28 @@ const PersonalProjectEntry = ({
         </AntdButton>
       </RemoveButtonWrapper>
       <StyledRow>
-        <FormTextInput label={"Name"} value={entry.name} />
+        <FormTextInput
+          name="name"
+          label={"Name"}
+          value={entry.name}
+          onChange={onTextChange}
+        />
       </StyledRow>
       <StyledRow>
         <FormTextArea
+          name="description"
           label={"Description"}
           rows={3}
           value={entry.description}
+          onChange={onTextChange}
         />
       </StyledRow>
       <StyledRow>
         <FormTextInput
+          name="githubProjectUrl"
           label={"GitHub Project URL"}
           value={entry.githubProjectUrl}
+          onChange={onTextChange}
         />
       </StyledRow>
       <Divider />

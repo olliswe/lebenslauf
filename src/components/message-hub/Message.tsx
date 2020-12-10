@@ -10,7 +10,7 @@ import React, {
 import { MessageType } from "../../hooks/useToasts.types";
 import { ITheme } from "../../configs/theme";
 import { AlertOutlined, CheckCircleOutlined } from "@ant-design/icons";
-import { Spin } from 'antd';
+import { Spin } from "antd";
 import CrossIcon from "../../elements/CrossIcon";
 
 const INMS = 300;
@@ -20,7 +20,7 @@ const SCMessage = styled.div<{ bc: string }>`
   width: 100%;
   max-width: 30rem;
   border-radius: 4px;
-  background-color: ${({ bc }:any) => bc};
+  background-color: ${({ bc }: any) => bc};
   overflow: hidden;
   position: relative;
   display: flex;
@@ -43,7 +43,7 @@ const Content = styled.div<{ theme: ITheme }>`
   align-items: center;
   padding: 1.157rem 1.3125rem;
   font-size: 0.9375rem;
-  color: ${({ theme }:any) => theme.colors.white};
+  color: ${({ theme }: any) => theme.colors.white};
 `;
 
 const CloseIcon = styled.div`
@@ -73,12 +73,12 @@ const Message: React.FC<IMessage & ThemeProps<ITheme>> = ({
   const typeColor: string = useMemo(() => {
     const colors: any = {
       error: theme.colors.errorBc,
-      success: theme.colors.brand,
+      success: theme.colors.secondary,
       info: theme.colors.blue,
     };
 
     return colors[type];
-  }, [theme.colors.brand, theme.colors.errorBc, theme.colors.blue, type]);
+  }, [theme.colors.secondary, theme.colors.errorBc, theme.colors.blue, type]);
 
   const TypeIcon: any = useMemo<ReactElement<any>>(() => {
     const icons: any = {
@@ -160,9 +160,7 @@ const Message: React.FC<IMessage & ThemeProps<ITheme>> = ({
       style={style}
     >
       <Content theme={theme}>
-        {type === MessageType.Loading && (
-          <Spin size="small"/>
-        )}
+        {type === MessageType.Loading && <Spin size="small" />}
         {type !== MessageType.Loading && (
           <TypeIcon stroke={theme.colors.white} fill={typeColor} />
         )}

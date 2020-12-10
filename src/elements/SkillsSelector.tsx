@@ -98,7 +98,7 @@ const SkillsSelector = ({
       {skills.length > 0 && (
         <ChipsWrapper size={chipSize}>
           {skills.map((skill, index) => (
-            <ChipWrapper>
+            <ChipWrapper key={index}>
               <Chip
                 fontSize={chipFontSize}
                 label={skill}

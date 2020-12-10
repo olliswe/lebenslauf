@@ -7,7 +7,11 @@ import H2 from "../../elements/H2";
 import useExperienceEntries from "../../hooks/useExperienceEntries";
 
 const EditCVWorkExp = () => {
-  const { experienceEntries, addEntry, hasEntries } = useExperienceEntries();
+  const {
+    entries: experienceEntries,
+    addEntry,
+    hasEntries,
+  } = useExperienceEntries();
 
   const handleClick = useCallback(() => addEntry(), [addEntry]);
 

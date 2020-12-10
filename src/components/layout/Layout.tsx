@@ -24,9 +24,11 @@ const Paper = styled.div`
   background: ${({ theme }) => theme.colors.white};
   box-shadow: 0 10px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19) !important;
   min-height: 85vh;
+  border-radius: 10px;
   @media (max-width: 500px) {
     min-height: 95vh;
   }
+  overflow: hidden;
 `;
 
 const Layout: React.FC<ILayout> = ({ children }) => {

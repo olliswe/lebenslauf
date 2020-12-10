@@ -7,7 +7,11 @@ import PersonalProjectEntry from "./PersonalProjectEntry";
 import usePersonalProjects from "../../hooks/usePersonalProjects";
 
 const EditCVSideProj = () => {
-  const { personalProjects, addEntry, hasEntries } = usePersonalProjects();
+  const {
+    entries: personalProjects,
+    addEntry,
+    hasEntries,
+  } = usePersonalProjects();
 
   const handleClick = useCallback(() => addEntry(), [addEntry]);
 

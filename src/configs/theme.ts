@@ -21,6 +21,8 @@ const colors = {
   errorTxt: "#ff0000",
   errorBc: "#ff5050",
 
+  success: "green",
+
   lead: "#454545",
   greyVarF0: "#F0F0F0",
   greyVarF1: "#f1f1f1",
