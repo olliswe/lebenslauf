@@ -6,7 +6,7 @@ export interface IBaseRequest extends AxiosRequestConfig {
   apiUrl?: string;
   path: string;
   method?: "get" | "post" | "put" | "patch" | "delete";
-  body?: { [key: string]: string };
+  body?: any;
   schema?: any | null;
   reducer?: any | null;
   dispatcher?: any | null;
