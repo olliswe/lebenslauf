@@ -10,6 +10,7 @@ import EditCVSkills from "../editCv/EditCVSkills";
 import CtaButton from "../../elements/CtaButton";
 import { Redirect, Route, Switch } from "react-router-dom";
 import useGetCV from "../../hooks/useGetCV";
+import usePostCV from "../../hooks/usePostCV";
 
 const Wrapper = styled.div`
   display: flex;
@@ -55,6 +56,7 @@ export const tabs = [
 
 const EditCV = () => {
   useGetCV();
+  const postCV = usePostCV();
 
   return (
     <Wrapper>
@@ -72,7 +74,7 @@ const EditCV = () => {
           </Switch>
         </Content>
       </Container>
-      <StyledButton>Save & Finish</StyledButton>
+      <StyledButton onClick={() => postCV()}>Save & Finish</StyledButton>
     </Wrapper>
   );
 };

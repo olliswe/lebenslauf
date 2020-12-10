@@ -1,24 +1,36 @@
-import useCV from "../stores/useCV";
+import useCV, { IUseCV } from "../stores/useCV";
 import useMutation from "../queries/useMutation";
-import { useCallback } from "react";
+import { useEffect } from "react";
 import useToastMessages from "./useToastMessages";
+import { cvPostProcessor } from "../helpers/postProcessors/cvPostProcessor";
 
 const usePostCV = () => {
   const cv = useCV((state) => state.cv);
   const set = useCV((state) => state.set);
   const { success, error } = useToastMessages();
 
-  const [mutate] = useMutation("me/cv", { method: "post", body: cv });
+  const [mutate, { isError }] = useMutation("/me/cv", {
+    method: "post",
+    reducer: cvPostProcessor,
+    body: { ...cv, skills: cv.skills.map((skill) => ({ name: skill })) },
+    config: {
+      onSuccess: (data) => {
+        set((state: IUseCV) => {
+          state.cv = data;
+        });
+        success("CV was successfully saved");
+      },
+      onError: () => {
+        error("Sorry, an error occurred!");
+      },
+    },
+  });
 
-  const postCV = useCallback(async () => {
-    try {
-      const data = await mutate();
-      console.log(data);
-      success("CV was successfully saved");
-      return { success: true };
-    } catch (e) {
-      error("Sorry, an error occurred!");
-      return { success: false };
-    }
-  }, [mutate, success, error]);
+  useEffect(() => {
+    console.log(isError);
+  }, [isError]);
+
+  return mutate;
 };
+
+export default usePostCV;

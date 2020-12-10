@@ -25,7 +25,7 @@ const EducationEntry = ({
   };
 
   const onDateChange = (date: string, name: "endDate" | "startDate") => {
-    handleChange({ index, value: date, name: name });
+    handleChange({ index, value: date || null, name: name });
   };
 
   return (

@@ -38,6 +38,7 @@ const PersonalProjectEntry = ({
       </RemoveButtonWrapper>
       <StyledRow>
         <FormTextInput
+          name="name"
           label={"Name"}
           value={entry.name}
           onChange={onTextChange}
@@ -45,6 +46,7 @@ const PersonalProjectEntry = ({
       </StyledRow>
       <StyledRow>
         <FormTextArea
+          name="description"
           label={"Description"}
           rows={3}
           value={entry.description}
@@ -53,6 +55,7 @@ const PersonalProjectEntry = ({
       </StyledRow>
       <StyledRow>
         <FormTextInput
+          name="githubProjectUrl"
           label={"GitHub Project URL"}
           value={entry.githubProjectUrl}
           onChange={onTextChange}

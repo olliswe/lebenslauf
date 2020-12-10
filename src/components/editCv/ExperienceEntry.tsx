@@ -26,7 +26,7 @@ const ExperienceEntry = ({
   };
 
   const onDateChange = (date: string, name: "endDate" | "startDate") => {
-    handleChange({ index, value: date, name: name });
+    handleChange({ index, value: date || null, name: name });
   };
 
   return (
@@ -44,6 +44,7 @@ const ExperienceEntry = ({
       </RemoveButtonWrapper>
       <StyledRow>
         <FormTextInput
+          name="role"
           label={"Role"}
           value={entry.role}
           onChange={onTextChange}
@@ -51,6 +52,7 @@ const ExperienceEntry = ({
       </StyledRow>
       <StyledRow>
         <FormTextInput
+          name="company"
           label={"Company"}
           value={entry.company}
           onChange={onTextChange}
@@ -59,6 +61,7 @@ const ExperienceEntry = ({
       <StyledRow gutter={24}>
         <Col span={12}>
           <FormDatePicker
+            name="startDate"
             label={"Start Date"}
             width={"80%"}
             value={entry.startDate}
@@ -69,17 +72,19 @@ const ExperienceEntry = ({
         </Col>
         <Col span={12}>
           <FormDatePicker
+            name="endDate"
             label={"End Date"}
             width={"80%"}
             value={entry.endDate}
             onChange={(moment: any, date: string) =>
-              onDateChange(date, "startDate")
+              onDateChange(date, "endDate")
             }
           />
         </Col>
       </StyledRow>
       <StyledRow>
         <FormTextArea
+          name="description"
           label={"Description"}
           rows={3}
           value={entry.description}
