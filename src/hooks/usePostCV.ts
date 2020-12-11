@@ -1,8 +1,35 @@
 import useCV, { IUseCV } from "../stores/useCV";
 import useMutation from "../queries/useMutation";
-import { useEffect } from "react";
 import useToastMessages from "./useToastMessages";
 import { cvPostProcessor } from "../helpers/postProcessors/cvPostProcessor";
+import {
+  ICV,
+  INITIAL_EDUCATION_STATE,
+  INITIAL_EXPERIENCE_STATE,
+  INITIAL_PERSONAL_PROJECT,
+} from "../models/cv";
+import isEqual from "lodash/isEqual";
+import omit from "lodash/omit";
+
+const cleanupCV = (cv: ICV) => {
+  const experienceEntries = cv.experienceEntries
+    .map((entry) => omit(entry, ["id"]))
+    .filter((entry) => !isEqual(entry, INITIAL_EXPERIENCE_STATE));
+  const educationEntries = cv.educationEntries
+    .map((entry) => omit(entry, ["id"]))
+    .filter((entry) => !isEqual(entry, INITIAL_EDUCATION_STATE));
+  const personalProjectEntries = cv.personalProjectEntries
+    .map((entry) => omit(entry, ["id"]))
+    .filter((entry) => !isEqual(entry, INITIAL_PERSONAL_PROJECT));
+  const skills = cv.skills.map((skill) => ({ name: skill }));
+  return {
+    ...omit(cv, ["id"]),
+    experienceEntries,
+    educationEntries,
+    personalProjectEntries,
+    skills,
+  };
+};
 
 const usePostCV = () => {
   const cv = useCV((state) => state.cv);
@@ -12,7 +39,7 @@ const usePostCV = () => {
   const [mutate] = useMutation("/me/cv", {
     method: "post",
     reducer: cvPostProcessor,
-    body: { ...cv, skills: cv.skills.map((skill) => ({ name: skill })) },
+    body: cleanupCV(cv),
     config: {
       onSuccess: (data) => {
         set((state: IUseCV) => {
