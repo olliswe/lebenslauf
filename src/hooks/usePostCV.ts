@@ -9,7 +9,7 @@ const usePostCV = () => {
   const set = useCV((state) => state.set);
   const { success, error } = useToastMessages();
 
-  const [mutate, { isError }] = useMutation("/me/cv", {
+  const [mutate] = useMutation("/me/cv", {
     method: "post",
     reducer: cvPostProcessor,
     body: { ...cv, skills: cv.skills.map((skill) => ({ name: skill })) },
@@ -25,10 +25,6 @@ const usePostCV = () => {
       },
     },
   });
-
-  useEffect(() => {
-    console.log(isError);
-  }, [isError]);
 
   return mutate;
 };
