@@ -39,7 +39,7 @@ const PersonalProjectEntry = ({
       <StyledRow>
         <FormTextInput
           name="name"
-          label={"Name"}
+          label={"Name*"}
           value={entry.name}
           onChange={onTextChange}
         />

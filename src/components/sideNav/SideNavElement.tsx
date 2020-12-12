@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import { Badge } from "antd";
 
 const Container = styled.div<{ active: boolean }>`
   display: block;
@@ -24,6 +25,7 @@ interface ISideNavElement {
   tabKey: number;
   onClickHandler: any;
   label: string;
+  error?: boolean;
   icon?: any;
 }
 
@@ -32,6 +34,7 @@ const SideNavElement = ({
   tabKey,
   onClickHandler,
   label,
+  error,
   icon,
 }: ISideNavElement) => {
   return (
@@ -41,7 +44,15 @@ const SideNavElement = ({
         onClickHandler(tabKey);
       }}
     >
-      <Wrapper>{label}</Wrapper>
+      <Wrapper>
+        <Badge
+          count={error && !active ? "!" : null}
+          offset={[5, -5]}
+          title="Required fields are missing!"
+        >
+          {label}
+        </Badge>
+      </Wrapper>
     </Container>
   );
 };

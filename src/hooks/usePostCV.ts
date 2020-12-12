@@ -23,7 +23,7 @@ const cleanupCV = (cv: ICV) => {
     .filter((entry) => !isEqual(entry, INITIAL_PERSONAL_PROJECT));
   const skills = cv.skills.map((skill) => ({ name: skill }));
   return {
-    ...omit(cv, ["id"]),
+    ...omit(cv, ["id", "createdAt", "updatedAt"]),
     experienceEntries,
     educationEntries,
     personalProjectEntries,

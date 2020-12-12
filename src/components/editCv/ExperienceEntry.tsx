@@ -45,7 +45,7 @@ const ExperienceEntry = ({
       <StyledRow>
         <FormTextInput
           name="role"
-          label={"Role"}
+          label={"Role*"}
           value={entry.role}
           onChange={onTextChange}
         />
@@ -53,7 +53,7 @@ const ExperienceEntry = ({
       <StyledRow>
         <FormTextInput
           name="company"
-          label={"Company"}
+          label={"Company*"}
           value={entry.company}
           onChange={onTextChange}
         />
@@ -62,7 +62,7 @@ const ExperienceEntry = ({
         <Col span={12}>
           <FormDatePicker
             name="startDate"
-            label={"Start Date"}
+            label={"Start Date*"}
             width={"80%"}
             value={entry.startDate}
             onChange={(moment: any, date: string) =>
@@ -94,7 +94,6 @@ const ExperienceEntry = ({
       <StyledRow>
         <FormTextInput
           label={"GitHub Project URL"}
-          rows={3}
           value={entry.githubProjectUrl}
           onChange={onTextChange}
         />

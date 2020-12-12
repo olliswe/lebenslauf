@@ -44,7 +44,7 @@ const EducationEntry = ({
       <StyledRow>
         <FormTextInput
           name="institution"
-          label={"Institution"}
+          label={"Institution*"}
           value={entry.institution}
           onChange={onTextChange}
         />
@@ -52,7 +52,7 @@ const EducationEntry = ({
       <StyledRow>
         <FormTextInput
           name="degree"
-          label={"Degree Title"}
+          label={"Degree Title*"}
           value={entry.degree}
           onChange={onTextChange}
         />
@@ -60,7 +60,7 @@ const EducationEntry = ({
       <StyledRow gutter={24}>
         <Col span={12}>
           <FormDatePicker
-            label={"Start Date"}
+            label={"Start Date*"}
             width={"80%"}
             value={entry.startDate}
             onChange={(moment: any, date: string) =>
