@@ -4,15 +4,9 @@ import Label from "./Label";
 
 interface IFormTextInput {
   label?: string;
-  error?: string;
 }
 
-const FormTextInput = ({
-  label,
-  error,
-  width,
-  ...rest
-}: IFormTextInput & any) => {
+const FormTextInput = ({ label, width, ...rest }: IFormTextInput & any) => {
   return (
     <Label>
       {label}

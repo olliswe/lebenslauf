@@ -1,8 +1,10 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 
-const CtaButton = styled.button`
-  background-image: ${({ theme }) =>
-    `linear-gradient(to bottom right,${theme.colors.primary},${theme.colors.primaryLight})`};
+const CtaButton = styled.button<{ isDisabled?: boolean }>`
+  background-image: ${({ theme, isDisabled }) =>
+    isDisabled
+      ? `linear-gradient(to bottom right,${theme.colors.greyVarD8},${theme.colors.primaryLight})`
+      : `linear-gradient(to bottom right,${theme.colors.primary},${theme.colors.primaryLight})`};
   color: white;
   display: inline-block;
   text-decoration: none;
@@ -11,9 +13,16 @@ const CtaButton = styled.button`
   outline: none;
   border-radius: 7rem;
   transition: all 0.2s;
-  cursor: pointer;
-  box-shadow: ${({ theme }) => `0px 0px 5px ${theme.colors.primary}`};
+  cursor: ${({ isDisabled }) => (isDisabled ? "unset" : "pointer")};
+  box-shadow: ${({ theme, isDisabled }) =>
+    isDisabled
+      ? `0px 0px 5px ${theme.colors.primaryLight}`
+      : `0px 0px 5px ${theme.colors.primary}`};
 
+  ${({ isDisabled }) => (isDisabled ? "" : hoverCss)}
+`;
+
+const hoverCss = css`
   &:hover {
     transform: translateY(-3px);
     box-shadow: ${({ theme }) => `0px 5px 20px ${theme.colors.primary}`};

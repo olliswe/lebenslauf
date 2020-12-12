@@ -25,10 +25,11 @@ const EditCVBasic = () => {
       <FormWrapper>
         <StyledRow>
           <FormTextInput
-            label={"Name"}
+            label={"Name*"}
             value={cv.name}
             name={"name"}
             onChange={handleChange}
+            required={true}
           />
         </StyledRow>
         <StyledRow>

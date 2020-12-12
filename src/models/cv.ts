@@ -1,8 +1,8 @@
 export interface IEducationEntry {
   institution: string;
   degree: string;
-  startDate: string;
-  endDate?: string;
+  startDate: string | null;
+  endDate?: string | null;
   description?: string;
   current: boolean;
 }
@@ -10,8 +10,8 @@ export interface IEducationEntry {
 export interface IExperienceEntry {
   role: string;
   company: string;
-  startDate: string;
-  endDate?: string;
+  startDate: string | null;
+  endDate?: string | null;
   current: boolean;
   githubProjectUrl?: string;
   description?: string;
@@ -70,8 +70,8 @@ export const INITIAL_CV_STATE = {
 export const INITIAL_EDUCATION_STATE: IEducationEntry = {
   institution: "",
   degree: "",
-  startDate: "",
-  endDate: "",
+  startDate: null,
+  endDate: null,
   description: "",
   current: false,
 };
@@ -79,8 +79,8 @@ export const INITIAL_EDUCATION_STATE: IEducationEntry = {
 export const INITIAL_EXPERIENCE_STATE: IExperienceEntry = {
   role: "",
   company: "",
-  startDate: "",
-  endDate: "",
+  startDate: null,
+  endDate: null,
   current: false,
   githubProjectUrl: "",
 };

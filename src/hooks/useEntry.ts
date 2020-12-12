@@ -7,7 +7,7 @@ import {
   IPersonalProjectEntry,
 } from "../models/cv";
 import pick from "lodash/pick";
-import isEmpty from "lodash/isEmpty";
+import isEqual from "lodash/isEqual";
 
 interface IUseEntry<T> {
   entryName:
@@ -61,16 +61,20 @@ const useEntry = <T extends TEntry>({
   const isInvalid = useMemo(
     () =>
       entries.some((entry) => {
-        if (isEmpty(entry)) {
+        if (isEqual(entry, initialState)) {
           return false;
         }
         const required = pick(entry, requiredFields);
-        if (isEmpty(required)) {
+        if (
+          Object.values(required).some(
+            (x) => x === null || x === "" || x === undefined
+          )
+        ) {
           return true;
         }
         return false;
       }),
-    [entries, requiredFields]
+    [entries, requiredFields, initialState]
   );
 
   const handleChange = useCallback(
