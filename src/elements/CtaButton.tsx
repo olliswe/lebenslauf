@@ -8,7 +8,7 @@ const CtaButton = styled.button<{ isDisabled?: boolean }>`
   color: white;
   display: inline-block;
   text-decoration: none;
-  padding: 0.75rem 1.25rem;
+  padding: 0.5rem 1rem;
   border: none;
   outline: none;
   border-radius: 7rem;
@@ -24,7 +24,7 @@ const CtaButton = styled.button<{ isDisabled?: boolean }>`
 
 const hoverCss = css`
   &:hover {
-    transform: translateY(-3px);
+    transform: translateY(-1px);
     box-shadow: ${({ theme }) => `0px 5px 20px ${theme.colors.primary}`};
   }
 

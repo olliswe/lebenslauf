@@ -27,6 +27,7 @@ const Container = styled.div`
   flex: 1;
   height: 100%;
   flex-direction: column;
+  position: relative;
 `;
 
 const Content = styled.div`
@@ -35,16 +36,17 @@ const Content = styled.div`
 `;
 
 const TitleWrapper = styled.div`
-  align-self: flex-end;
-  margin-right: 2rem;
-  height: 0px;
+  position: absolute;
+  top: 0;
+  right: 2rem;
+  display: flex;
+  align-items: center;
 `;
 
 const StyledButton = styled(CtaButton)`
-  position: absolute;
-  right: 5rem;
-  bottom: 0rem;
-  font-size: 1.5rem;
+  font-size: 1rem;
+  margin-right: 1rem;
+  transform: translateY(5px);
 `;
 
 const EditCV = () => {
@@ -96,6 +98,29 @@ const EditCV = () => {
       <EditCVSideNav tabs={tabs} />
       <Container>
         <TitleWrapper>
+          {isDisabled ? (
+            <>
+              <Tooltip
+                title={"Please fill all required fields"}
+                placement={"topLeft"}
+              >
+                <StyledButton isDisabled={true}>Preview</StyledButton>
+              </Tooltip>
+              <Tooltip
+                title={"Please fill all required fields"}
+                placement={"topLeft"}
+              >
+                <StyledButton isDisabled={true}>Save & Finish</StyledButton>
+              </Tooltip>
+            </>
+          ) : (
+            <>
+              <StyledButton onClick={() => postCV()}>Preview</StyledButton>
+              <StyledButton onClick={() => postCV()}>
+                Save & Finish
+              </StyledButton>
+            </>
+          )}
           <H1>EDIT CV</H1>
         </TitleWrapper>
         <Content>
@@ -107,16 +132,6 @@ const EditCV = () => {
           </Switch>
         </Content>
       </Container>
-      {isDisabled ? (
-        <Tooltip
-          title={"Please fill all required fields"}
-          placement={"topLeft"}
-        >
-          <StyledButton isDisabled={true}>Save & Finish</StyledButton>
-        </Tooltip>
-      ) : (
-        <StyledButton onClick={() => postCV()}>Save & Finish</StyledButton>
-      )}
     </Wrapper>
   );
 };

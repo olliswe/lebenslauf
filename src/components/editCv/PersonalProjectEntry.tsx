@@ -2,9 +2,10 @@ import React, { useCallback } from "react";
 import { IPersonalProjectEntry } from "../../models/cv";
 import { EntryWrapper, RemoveButtonWrapper, StyledRow } from "./Shared";
 import FormTextInput from "../../elements/FormTextInput";
-import { Button as AntdButton, Divider } from "antd";
+import { Button as AntdButton, Col, Divider } from "antd";
 import FormTextArea from "../../elements/FormTextArea";
 import usePersonalProjects from "../../hooks/usePersonalProjects";
+import FormDatePicker from "src/elements/FormDatePicker";
 
 const PersonalProjectEntry = ({
   entry,
@@ -21,6 +22,10 @@ const PersonalProjectEntry = ({
 
   const onTextChange = (event: any) => {
     handleChange({ index, value: event.target.value, name: event.target.name });
+  };
+
+  const onDateChange = (date: string, name: "endDate" | "startDate") => {
+    handleChange({ index, value: date || null, name: name });
   };
 
   return (
@@ -43,6 +48,30 @@ const PersonalProjectEntry = ({
           value={entry.name}
           onChange={onTextChange}
         />
+      </StyledRow>
+      <StyledRow gutter={24}>
+        <Col span={12}>
+          <FormDatePicker
+            name="startDate"
+            label={"Start Date"}
+            width={"80%"}
+            value={entry.startDate}
+            onChange={(moment: any, date: string) =>
+              onDateChange(date, "startDate")
+            }
+          />
+        </Col>
+        <Col span={12}>
+          <FormDatePicker
+            name="endDate"
+            label={"End Date"}
+            width={"80%"}
+            value={entry.endDate}
+            onChange={(moment: any, date: string) =>
+              onDateChange(date, "endDate")
+            }
+          />
+        </Col>
       </StyledRow>
       <StyledRow>
         <FormTextArea
