@@ -16,8 +16,8 @@ import useExperienceEntries from "../../hooks/useExperienceEntries";
 import usePersonalProjects from "../../hooks/usePersonalProjects";
 import useCV from "../../stores/useCV";
 import { Tooltip } from "antd";
-import usePreviewCV from "src/hooks/usePreviewCV";
-import CvPreview from "src/components/cvPreview/CvPreview";
+import usePreviewCV from "hooks/usePreviewCV";
+import CvPreview from "components/cvPreview/CvPreview";
 
 const Wrapper = styled.div`
   display: flex;

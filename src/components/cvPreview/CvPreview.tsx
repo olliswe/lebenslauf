@@ -1,6 +1,6 @@
 import React from "react";
 import { Modal } from "antd";
-import usePreviewCVStore from "src/stores/usePreviewCVStore";
+import usePreviewCVStore from "stores/usePreviewCVStore";
 
 const CvPreview = () => {
   const previewCV = usePreviewCVStore((state) => state.previewCV);

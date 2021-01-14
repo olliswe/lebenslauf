@@ -1,7 +1,7 @@
 import { useImperativeQuery } from "../queries/useQuery";
 import { useCallback } from "react";
-import usePreviewCVStore from "src/stores/usePreviewCVStore";
-import useToastMessages from "src/hooks/useToastMessages";
+import usePreviewCVStore from "stores/usePreviewCVStore";
+import useToastMessages from "hooks/useToastMessages";
 
 const usePreviewCV = () => {
   const { data, refetch, isLoading } = useImperativeQuery<string, any>(

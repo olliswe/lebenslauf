@@ -5,7 +5,7 @@ import FormTextInput from "../../elements/FormTextInput";
 import { Button as AntdButton, Col, Divider } from "antd";
 import FormTextArea from "../../elements/FormTextArea";
 import usePersonalProjects from "../../hooks/usePersonalProjects";
-import FormDatePicker from "src/elements/FormDatePicker";
+import FormDatePicker from "elements/FormDatePicker";
 
 const PersonalProjectEntry = ({
   entry,
