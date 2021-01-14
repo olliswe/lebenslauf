@@ -10,6 +10,7 @@ export interface IEducationEntry {
 export interface IExperienceEntry {
   role: string;
   company: string;
+  location: string;
   startDate: string | null;
   endDate?: string | null;
   current: boolean;
@@ -24,8 +25,9 @@ export interface ISkill {
 
 export interface IPersonalProjectEntry {
   name: string;
+  startDate?: string;
+  endDate?: string;
   description?: string;
-  techStack?: string[];
   githubProjectUrl?: string;
 }
 
@@ -79,6 +81,7 @@ export const INITIAL_EDUCATION_STATE: IEducationEntry = {
 export const INITIAL_EXPERIENCE_STATE: IExperienceEntry = {
   role: "",
   company: "",
+  location: "",
   startDate: null,
   endDate: null,
   current: false,

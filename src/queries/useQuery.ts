@@ -20,4 +20,30 @@ const useQuery = <TResult = unknown, TError = unknown>(
   });
 };
 
+export const useImperativeQuery = <TResult = unknown, TError = unknown>(
+  key: string,
+  path: string,
+  props?: Omit<IBaseRequest, "token" | "path" | "method"> & {
+    config?: QueryConfig<any>;
+  }
+) => {
+  const result = useQuery<TResult, TError>(key, path, {
+    ...(props || {}),
+    config: { enabled: false, ...(props?.config || {}) },
+  });
+
+  const refetch = async () => {
+    try {
+      const data = await result.refetch({ throwOnError: true });
+      return { data, error: null };
+    } catch (e) {
+      return { error: e, data: null };
+    }
+  };
+  return {
+    ...result,
+    refetch,
+  };
+};
+
 export default useQuery;

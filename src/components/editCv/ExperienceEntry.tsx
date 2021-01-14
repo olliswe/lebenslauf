@@ -16,6 +16,7 @@ const ExperienceEntry = ({
   index: number;
 }) => {
   const { removeEntry, handleChange } = useExperienceEntries();
+
   const handleButtonClick = useCallback(() => removeEntry(index), [
     removeEntry,
     index,
@@ -55,6 +56,14 @@ const ExperienceEntry = ({
           name="company"
           label={"Company*"}
           value={entry.company}
+          onChange={onTextChange}
+        />
+      </StyledRow>
+      <StyledRow>
+        <FormTextInput
+          name="location"
+          label={"Location*"}
+          value={entry.location}
           onChange={onTextChange}
         />
       </StyledRow>
