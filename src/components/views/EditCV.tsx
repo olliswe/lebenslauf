@@ -1,4 +1,4 @@
-import React, { useMemo } from "react";
+import React, { useCallback, useMemo } from "react";
 import EditCVSideNav from "../editCv/EditCVSideNav";
 import styled from "styled-components";
 import H1 from "../../elements/H1";
@@ -16,6 +16,8 @@ import useExperienceEntries from "../../hooks/useExperienceEntries";
 import usePersonalProjects from "../../hooks/usePersonalProjects";
 import useCV from "../../stores/useCV";
 import { Tooltip } from "antd";
+import usePreviewCV from "src/hooks/usePreviewCV";
+import CvPreview from "src/components/cvPreview/CvPreview";
 
 const Wrapper = styled.div`
   display: flex;
@@ -52,6 +54,7 @@ const StyledButton = styled(CtaButton)`
 const EditCV = () => {
   useGetCV();
   const postCV = usePostCV();
+  const { getPreviewCV } = usePreviewCV();
   const cv = useCV((state) => state.cv);
 
   const basicInvalid = !cv.name;
@@ -93,6 +96,12 @@ const EditCV = () => {
     [basicInvalid, educationInvalid, experienceInvalid, projectsInvalid]
   );
 
+  const handlePreview = useCallback(async () => {
+    //todo: add better error handling
+    await postCV();
+    await getPreviewCV();
+  }, [getPreviewCV, postCV]);
+
   return (
     <Wrapper>
       <EditCVSideNav tabs={tabs} />
@@ -115,7 +124,7 @@ const EditCV = () => {
             </>
           ) : (
             <>
-              <StyledButton onClick={() => postCV()}>Preview</StyledButton>
+              <StyledButton onClick={() => handlePreview}>Preview</StyledButton>
               <StyledButton onClick={() => postCV()}>
                 Save & Finish
               </StyledButton>
@@ -132,6 +141,7 @@ const EditCV = () => {
           </Switch>
         </Content>
       </Container>
+      <CvPreview />
     </Wrapper>
   );
 };
