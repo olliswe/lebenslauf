@@ -124,7 +124,9 @@ const EditCV = () => {
             </>
           ) : (
             <>
-              <StyledButton onClick={() => handlePreview}>Preview</StyledButton>
+              <StyledButton onClick={() => handlePreview()}>
+                Preview
+              </StyledButton>
               <StyledButton onClick={() => postCV()}>
                 Save & Finish
               </StyledButton>
